@@ -78,51 +78,84 @@
         <div class="auth-container no-height-calc">
             <div class="auth">
                 <div class="signin-signup">
-                    <form method="POST" action="{% url 'process_order'%}" class="sign-up-form">
-                        {% csrf_token %}
-                        <h2 class="account-title">Billing Information <i class="fa-regular fa-square-list"></i></h2>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-user"></i>
-                            {{ billing_form.card_name }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-envelope"></i>
-                            {{ billing_form.card_number }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_exp_date }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_cvv_number }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-user"></i>
-                            {{ billing_form.card_address1 }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-envelope"></i>
-                            {{ billing_form.card_address2 }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_city }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_state }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_zipcode }}
-                        </div>
-                        <div class="input-field sign-up-input">
-                            <i class="fas fa-lock"></i>
-                            {{ billing_form.card_country }}
-                        </div>
-                        <button type="submit" name="register" class="btn">Pay Now</button>
-                    </form>
+                  <!-- your_template.html -->
+
+<form method="POST" action="{% url 'process_order' %}" class="sign-up-form" id="payment-form">
+    {% csrf_token %}
+    <h2 class="account-title">Billing Information <i class="fa-regular fa-square-list"></i></h2>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-user"></i>
+        {{ billing_form.card_name }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-envelope"></i>
+        <input type="text" id="card-number" placeholder="Card Number" class="input-field" required>
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        <input type="text" id="card-expiry" placeholder="Expiration Date (MM/YY)" class="input-field" required>
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        <input type="text" id="card-cvc" placeholder="CVC" class="input-field" required>
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-user"></i>
+        {{ billing_form.card_address1 }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-envelope"></i>
+        {{ billing_form.card_address2 }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        {{ billing_form.card_city }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        {{ billing_form.card_state }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        {{ billing_form.card_zipcode }}
+    </div>
+    <div class="input-field sign-up-input">
+        <i class="fas fa-lock"></i>
+        {{ billing_form.card_country }}
+    </div>
+    <input type="hidden" name="stripeToken" id="stripeToken">
+    <button type="submit" class="btn">Pay Now</button>
+</form>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    var stripe = Stripe('{{ stripe_publishable_key }}');
+    var elements = stripe.elements();
+
+    var cardNumber = elements.create('cardNumber', {placeholder: 'Card Number'});
+    cardNumber.mount('#card-number');
+
+    var cardExpiry = elements.create('cardExpiry', {placeholder: 'Expiration Date (MM/YY)'});
+    cardExpiry.mount('#card-expiry');
+
+    var cardCvc = elements.create('cardCvc', {placeholder: 'CVC'});
+    cardCvc.mount('#card-cvc');
+
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createToken(cardNumber).then(function(result) {
+            if (result.error) {
+                console.error(result.error.message);
+            } else {
+                document.getElementById('stripeToken').value = result.token.id;
+                form.submit();
+            }
+        });
+    });
+</script>
+
                 </div>
             </div>
         </div>

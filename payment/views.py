@@ -6,7 +6,63 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from store.models import Product, Profile
 import datetime
+import stripe
+from django.conf import settings
 
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+# views.py
+
+def payment_success(request):
+    return render(request, 'payment_success.html')
+
+
+def process_order(request):
+    if request.method == 'POST':
+        form = PaymentForm(request.POST)
+        if form.is_valid():
+            # Extract billing info from form
+            card_name = form.cleaned_data['card_name']
+            card_address1 = form.cleaned_data['card_address1']
+            card_address2 = form.cleaned_data['card_address2']
+            card_city = form.cleaned_data['card_city']
+            card_state = form.cleaned_data['card_state']
+            card_zipcode = form.cleaned_data['card_zipcode']
+            card_country = form.cleaned_data['card_country']
+
+            # Get the Stripe token
+            token = request.POST.get('stripeToken')
+
+            try:
+                # Create a charge: this will charge the user's card
+                charge = stripe.Charge.create(
+                    amount=5000,  # Amount in cents
+                    currency="usd",
+                    source=token,
+                    description="Example charge",
+                    metadata={
+                        'name': card_name,
+                        'address1': card_address1,
+                        'address2': card_address2,
+                        'city': card_city,
+                        'state': card_state,
+                        'zipcode': card_zipcode,
+                        'country': card_country,
+                    }
+                )
+                return redirect('payment_success')
+            except stripe.error.CardError as e:
+                # Handle the error here
+                context = {
+                    'error_message': "Your card has been declined.",
+                    'billing_form': form,
+                    'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY,
+                }
+                return render(request, 'your_template.html', context)
+    else:
+        form = PaymentForm()
+
+    return render(request, 'billing_info.html', {'billing_form': form, 'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY})
 
 def checkout(request):
     # Get the cart
