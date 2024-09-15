@@ -2,13 +2,63 @@
 {% load static %}
 
 {% block content %}
-
-<!-- content -->
-
 <main>
-
-<h3>change me</h3>
-
+    <!-- Collections List -->
+    <section class="collections-list">
+        <h1>Collections</h1>
+        <div class="collection-grid">
+            {% for collection in collections %}
+                <div class="collection-card">
+                    {% if collection.image %}
+                        <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
+                    {% endif %}
+                    <h2>{{ collection.name }}</h2>
+                    <p>{{ collection.description }}</p>
+                </div>
+            {% empty %}
+                <p>No collections available.</p>
+            {% endfor %}
+        </div>
+    </section>
 </main>
 
+
+
+
+
 {% endblock %}
+
+<style>
+    .collection-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+    }
+
+    .collection-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: #fff;
+        width: calc(25% - 1rem); /* Adjust as needed */
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .collection-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+</style>
+<!-- COLLECTION LOOP -->
+
+<!-- {% for collection in collections %}
+<h2>{{ collection.name }}</h2>
+
+{% if collection.image %}
+<img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
+{% endif %}
+
+{% endfor %} -->

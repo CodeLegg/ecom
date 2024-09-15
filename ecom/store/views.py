@@ -16,6 +16,10 @@ def collections(request, slug=None):
     products = None
     collections = Collection.objects.exclude(name="CBD Packaging")  # Exclude the specific Collection
 
+     # Redirect to home if the requested collection is "CBD Packaging"
+    if slug == "cbd-packaging":  # Assuming 'slug' is in a URL-friendly format
+        return redirect('collections')  # Redirect to the home page
+
     if slug:
         try:
             # Look up the Collection by slug
