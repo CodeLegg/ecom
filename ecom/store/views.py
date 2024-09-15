@@ -38,3 +38,20 @@ def collections(request, slug=None):
     }
 
     return render(request, 'collections.html', context)
+
+from django.shortcuts import render, get_object_or_404
+from .models import Collection, Product
+
+def collection_detail(request, slug):
+    # Get the collection based on the slug
+    collection = get_object_or_404(Collection, slug=slug)
+    
+    # Get all products associated with the collection
+    products = Product.objects.filter(collection=collection)
+    
+    context = {
+        'collection': collection,
+        'products': products,
+    }
+    
+    return render(request, 'collection_detail.html', context)

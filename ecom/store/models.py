@@ -40,10 +40,10 @@ class Collection(models.Model):
     is_active = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
     order = models.PositiveIntegerField(default=0)
-    products = models.ManyToManyField('Product', related_name='collections', blank=True, null=True)
+    products = models.ManyToManyField('Product', related_name='product_collections', blank=True)
     visible_from = models.DateTimeField(blank=True, null=True)
     visible_to = models.DateTimeField(blank=True, null=True)
-    updated_at = models.DateTimeField(auto_now=True)      # Automatically updated on save
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.name
@@ -57,6 +57,7 @@ class Collection(models.Model):
         ordering = ['order', 'name']
         verbose_name = 'collection'
         verbose_name_plural = 'collections'
+
 
 
 
@@ -76,19 +77,19 @@ class Customer(models.Model):
 
 
 
-# All of our Products
 class Product(models.Model):
-	name = models.CharField(max_length=100)
-	price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
-	category = models.ForeignKey(Collection, on_delete=models.CASCADE, default=1)
-	description = models.CharField(max_length=250, default='', blank=True, null=True)
-	image = models.ImageField(upload_to='uploads/product/')
-	# Add Sale Stuff
-	is_sale = models.BooleanField(default=False)
-	sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
-	is_active = models.BooleanField(default=True)
-	def __str__(self):
-		return self.name
+    name = models.CharField(max_length=100)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name='collection_products', default=1)
+    description = models.CharField(max_length=250, default='', blank=True, null=True)
+    image = models.ImageField(upload_to='uploads/product/')
+    is_sale = models.BooleanField(default=False)
+    sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.name
+
 
 
 # Customer Orders
