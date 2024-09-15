@@ -10,7 +10,7 @@
             {% for collection in collections %}
                 <div class="collection-card">
                     {% if collection.image %}
-                        <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
+                        <img class="collection-images" src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
                     {% endif %}
                     <h2>{{ collection.name }}</h2>
                     <p>{{ collection.description }}</p>
