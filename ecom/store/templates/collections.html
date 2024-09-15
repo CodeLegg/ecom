@@ -14,9 +14,8 @@
         <div class="collection-grid">
                 {% for collection in collections %}
                 
-                
                     <li>
-                        <a href="">
+                        <a href="{% url 'collection_detail' collection.slug %}">
                             <div class="collection-card">
                                 {% if collection.image %}
                                     <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
