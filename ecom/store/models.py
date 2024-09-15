@@ -1,7 +1,10 @@
 from django.db import models
 import datetime
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
+from django.utils.text import slugify
+
 
 
 # Create Customer Profile
@@ -29,17 +32,33 @@ def create_profile(sender, instance, created, **kwargs):
 # Automate the profile thing
 post_save.connect(create_profile, sender=User)
 
-
-
 class Collection(models.Model):
     name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    image = models.ImageField(upload_to='collections/', blank=True, null=True)
+    is_active = models.BooleanField(default=True)
+    is_featured = models.BooleanField(default=False)
+    order = models.PositiveIntegerField(default=0)
+    products = models.ManyToManyField('Product', related_name='collections', blank=True, null=True)
+    visible_from = models.DateTimeField(blank=True, null=True)
+    visible_to = models.DateTimeField(blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)      # Automatically updated on save
 
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
     class Meta:
+        ordering = ['order', 'name']
         verbose_name = 'collection'
         verbose_name_plural = 'collections'
+
+
 
 
 
@@ -67,7 +86,7 @@ class Product(models.Model):
 	# Add Sale Stuff
 	is_sale = models.BooleanField(default=False)
 	sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
-
+	is_active = models.BooleanField(default=True)
 	def __str__(self):
 		return self.name
 
