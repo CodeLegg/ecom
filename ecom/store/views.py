@@ -39,9 +39,6 @@ def collections(request, slug=None):
 
     return render(request, 'collections.html', context)
 
-from django.shortcuts import render, get_object_or_404
-from .models import Collection, Product
-
 def collection_detail(request, slug):
     # Get the collection based on the slug
     collection = get_object_or_404(Collection, slug=slug)
@@ -55,3 +52,7 @@ def collection_detail(request, slug):
     }
     
     return render(request, 'collection_detail.html', context)
+
+def product(request, pk):
+    product = get_object_or_404(Product, id=pk)
+    return render(request, 'product.html', {'product': product})
