@@ -77,6 +77,13 @@
          */
 
 	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
+
+
+
+/*-----------------------------------*\
+  #COLLECTION STYLES
+\*-----------------------------------*/
+
 }
 .collection-detail {
 	padding: 10px;
@@ -133,3 +140,107 @@
     display: inline; /* Keep links inline with text */
     white-space: normal; /* Ensure normal text wrapping */
 }
+
+/*-----------------------------------*\
+  #COLLECTION PRODUCT STYLES
+\*-----------------------------------*/
+
+.collection-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+    padding: 10px 0;
+    justify-items: center;  /* Centers grid items horizontally */
+    align-items: center;    /* Centers grid items vertically */
+}
+
+.collection-product-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--white);
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.collection-product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow on hover */
+}
+
+.collection-detail-product-image-wrapper {
+    position: relative;
+    width: 155px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    overflow: hidden; /* Hide overflow */
+}
+
+.collection-detail-product-image {
+    width: 100%; /* Make the image fit the container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space */
+}
+
+.image-overlay {
+    position: absolute; /* Overlay will be positioned absolutely within the image container */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+    color: white; /* Text color */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Smooth transition */
+}
+
+.collection-product-card:hover .image-overlay {
+    opacity: 1; /* Show overlay on hover */
+}
+
+.details-button {
+    background-color: #007bff; /* Button background color */
+    color: white; /* Button text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
+}
+
+.details-button:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+.collection-text {
+    padding: 10px; /* Add some padding */
+    flex: 1; /* Allow text to take up the remaining space */
+    display: flex; /* Ensure text content aligns correctly */
+    flex-direction: column; /* Stack text elements vertically */
+    justify-content: center; /* Center text vertically */
+	align-items: center; /* Center text horizontally */
+	text-align: center; /* Center text within the card */
+}
+
+.collection-text h2 {
+    margin: 0;
+    font-size: 1.5rem; /* Adjust font size if needed */
+}
+
+.collection-text p {
+    margin: 4px 0; /* Adjust spacing between paragraphs */
+}
+
+.collection-text small {
+    display: block;
+    margin-top: 5px; /* Space above small text */
+}
+
+
+
