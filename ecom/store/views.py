@@ -46,11 +46,11 @@ def collection_detail(request, slug):
     # Get all products associated with the collection
     products = Product.objects.filter(collection=collection)
     
+    # Pass the collection name (or slug) to the context
     context = {
         'collection': collection,
         'products': products,
     }
-    
     return render(request, 'collection_detail.html', context)
 
 def product(request, pk):
