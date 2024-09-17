@@ -2,19 +2,44 @@
 {% load static %}
 
 {% block content %}
-<main>
-    <section class="collection-detail">
+<main>  
+    
+    <div class="collection-title">
+    <h1>{{ collection.name }}</h1>
+</div>
+            
         
-        <div class="collection-title">
-            <h1>{{ collection.name }}</h1>
-        </div>
+    
+        <section class="collection-detail">
+        
+      
+
+            <div class="collection-message">
+                Please note only
+                <a href=""><strong>custom (bespoke) packaging</strong></a>
+                and
+                <a href=""><strong>blank packaging</strong></a>
+                for
+                <strong>flower</strong>
+                are displayed in this collection. If you require
+                <a href=""><strong>Ready-Made Strain Packaging</strong></a>, please
+                <a href=""><strong>click here.</strong></a>
+            </div>
+            
+            
+            
+        
+        <!-- <div class="collection-message">
+            <h4>We offer a variety of different packaging options for concentrate and extracts. 
+                You can buy without labels, upload your own artwork, or work with our designers to create your product or brands packaging</h4>
+        </div> -->
 
         <div class="products-grid">
             {% for product in products %}
                 <div class="product-card">
                     <a href="{% url 'product' product.id %}">
                         {% if product.image %}
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}" class="collection-detail-image">
                         {% endif %}
                         <h2>{{ product.name }}</h2>
                         <p>{{ product.description }}</p>
@@ -27,6 +52,8 @@
                 <p>No products available in this collection.</p>
             {% endfor %}
         </div>
+
+        
         
     </section>
 </main>

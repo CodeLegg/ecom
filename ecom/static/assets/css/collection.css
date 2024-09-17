@@ -78,6 +78,9 @@
 
 	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
 }
+.collection-detail {
+	padding: 10px;
+}
 
 .collection-grid {
 	display: grid;
@@ -89,6 +92,10 @@
 }
 
 .collection-image {
+	width: 300px;
+	margin: 0 auto;
+}
+.collection-detail-image {
 	width: 300px;
 	margin: 0 auto;
 }
@@ -112,5 +119,17 @@
 	font-weight: 600;
 	color: var(--black);
 	text-align: center;
-	margin-top: 15px;
+	padding: 20px 10px 0px;
+}
+.collection-message {
+    font-size: 16px;
+    color: var(--black);
+    text-align: center;
+    max-width: 350px; /* Adjust to control paragraph width */
+    margin: 0 auto; /* Center the paragraph */
+}
+
+.collection-message a {
+    display: inline; /* Keep links inline with text */
+    white-space: normal; /* Ensure normal text wrapping */
 }
