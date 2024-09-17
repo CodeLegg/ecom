@@ -11,7 +11,7 @@ const collectionMessages = {
         are displayed in this collection. If you require 
         <a href=""><strong>Ready-Made Strain Packaging</strong></a>, 
         please 
-        <a href=""><strong>click here.</strong></a>.
+        <a href=""><strong>click here.</strong></a>
     `,
 
     'extract-packaging': `

@@ -19,8 +19,10 @@
 	--black: hsl(0, 0%, 0%);
 
 	--navbar: hsl(0, 0%, 10%);
-	--navbar-sidekick: hsl(279, 70%, 64%);
-	--navbar-sidekick2: hsl(88, 69%, 64%);
+	--navbar-sidekick2: hsl(88, 69%, 64%); /* Original color */
+    --navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
+    --navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
+    --text-green: #228B22; /* High-contrast green */
 	--offwhite: hsl(35, 100%, 98%);
 	--darkgrey: hsl(0, 0%, 92%);
 	--lightgrey: hsl(0, 0%, 87%);

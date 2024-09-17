@@ -19,9 +19,10 @@
 	--black: hsl(0, 0%, 0%);
 
 	--navbar: hsl(0, 0%, 10%);
-	--navbar-sidekick: hsl(279, 70%, 64%);
-	--navbar-sidekick2: hsl(88, 69%, 64%);
-	--navbar-sidekick3: hsl(88, 69%, 50%); /* Darker shade for hover */
+    --navbar-sidekick2: hsl(88, 69%, 64%); /* Original color */
+    --navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
+    --navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
+    --text-green: #228B22; /* High-contrast green */
 
 	--offwhite: hsl(35, 100%, 98%);
 	--darkgrey: hsl(0, 0%, 35%);
@@ -141,7 +142,15 @@
 .collection-message a {
     display: inline; /* Keep links inline with text */
     white-space: normal; /* Ensure normal text wrapping */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline */
 }
+.collection-message a:focus,
+.collection-message a:hover,
+.collection-message a:active {
+    color: var(--navbar-sidekick2); /* Hover color */
+}
+
 
 /*-----------------------------------*\
   #COLLECTION PRODUCT STYLES
@@ -236,7 +245,7 @@
 
 
 .details-button:hover {
-    background-color: var(--navbar-sidekick3); /* Darker button color on hover */
+    background-color: var(--navbar-sidekick-intermediate); /* Darker button color on hover */
 }
 
 .collection-text {
@@ -249,6 +258,10 @@
 	text-align: center; /* Center text within the card */
 }
 
+.collection-text p{
+	color: var(--navbar-sidekick3);
+	font-weight: 700;
+}
 .collection-text h2 {
     margin: 0;
     font-size: 1.5rem; /* Adjust font size if needed */
