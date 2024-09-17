@@ -22,7 +22,7 @@
 	--navbar-sidekick: hsl(279, 70%, 64%);
 	--navbar-sidekick2: hsl(88, 69%, 64%);
 	--offwhite: hsl(35, 100%, 98%);
-	--darkgrey: hsl(0, 0%, 35%);
+	--darkgrey: hsl(0, 0%, 92%);
 	--lightgrey: hsl(0, 0%, 87%);
 
 	/**
@@ -142,7 +142,7 @@ html {
 }
 
 body {
-	background-color: #cfcfcf;
+	background-color: var(--white);
 	font-size: 1.6rem;
 }
 

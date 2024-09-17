@@ -22,7 +22,7 @@
                     class="collection-detail-product-image"
                 />
                 <a href="{% url 'product' product.id %}" class="product-link">
-                    <div class="image-overlay">
+                    <div class="">
                         <button class="details-button">Details</button>
                     </div>
                 </a>
@@ -34,6 +34,8 @@
                 <small>from</small>
                 <p>Price: ${{ product.price }}</p>
             </div>
+
+            <div class="product-card-overlay"></div>
         </div>
         {% empty %}
         <p>No products available in this collection.</p>
