@@ -14,6 +14,58 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib import messages
 from .models import Collection, Product
 
+
+def sticker_collections(request, slug=None):
+    collection = None
+    products = None
+
+    # Try to get the "Stickers, Labels, Design & Print" collection
+    stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
+
+    # Get collections that are children of "Stickers, Labels, Design & Print"
+    collections = Collection.objects.filter(parent=stickers_collection)
+
+    # Redirect to home if the requested collection slug is "stickers-labels-design-print"
+    if slug and slug.lower() == "stickers-labels-design-print":
+        return redirect('sticker_collections')
+
+    if slug:
+        try:
+            collection = get_object_or_404(Collection, slug=slug)
+            products = collection.products.filter(is_active=True)
+        except Collection.DoesNotExist:
+            messages.error(request, "That Collection Doesn't Exist.")
+            return redirect('sticker_collections')
+
+    context = {
+        'collection': collection,
+        'collections': collections,
+        'products': products,
+    }
+
+    return render(request, 'sticker_collections.html', context)
+
+def sticker_collections_product_list(request, slug):
+    # Try to get the "Stickers, Labels, Design & Print" collection
+    stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
+
+    # Redirect if the slug is "stickers-labels-design-print"
+    if slug.lower() == "stickers-labels-design-print":
+        return redirect('sticker_collections')
+
+    # Get the collection based on the slug
+    collection = get_object_or_404(Collection, slug=slug)
+
+    # Get all products associated with the collection
+    products = Product.objects.filter(collection=collection)
+
+    context = {
+        'collection': collection,
+        'products': products,
+    }
+    return render(request, 'sticker_collections_product_list.html', context)
+
+
 def cbd_collections(request, slug=None):
     collection = None
     products = None
