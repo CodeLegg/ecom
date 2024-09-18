@@ -10,19 +10,23 @@ def home(request):
 def wholesale(request):
     return render(request, 'wholesale.html', {})
 
-def collections(request, slug=None):
+from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib import messages
+from .models import Collection, Product
+
+def cbd_collections(request, slug=None):
     collection = None
     products = None
-    
+
     # Try to get the "CBD Packaging" collection
     cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
-    
+
     # Get collections that are children of "CBD Packaging"
     collections = Collection.objects.filter(parent=cbd_packaging)
-    
+
     # Redirect to home if the requested collection slug is "cbd-packaging"
     if slug and slug.lower() == "cbd-packaging":
-        return redirect('collections')
+        return redirect('cbd_collections')
 
     if slug:
         try:
@@ -30,7 +34,7 @@ def collections(request, slug=None):
             products = collection.products.filter(is_active=True)
         except Collection.DoesNotExist:
             messages.error(request, "That Collection Doesn't Exist.")
-            return redirect('collections')
+            return redirect('cbd_collections')
 
     context = {
         'collection': collection,
@@ -38,27 +42,28 @@ def collections(request, slug=None):
         'products': products,
     }
 
-    return render(request, 'collections.html', context)
+    return render(request, 'cbd_collections.html', context)
 
-def collection_detail(request, slug):
+def cbd_collections_product_list(request, slug):
     # Try to get the "CBD Packaging" collection
     cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
-    
+
     # Redirect if the slug is "cbd-packaging"
     if slug.lower() == "cbd-packaging":
-        return redirect('collections')
-    
+        return redirect('cbd_collections')
+
     # Get the collection based on the slug
     collection = get_object_or_404(Collection, slug=slug)
-    
+
     # Get all products associated with the collection
     products = Product.objects.filter(collection=collection)
-    
+
     context = {
         'collection': collection,
         'products': products,
     }
-    return render(request, 'collection_detail.html', context)
+    return render(request, 'cbd_collections_product_list.html', context)
+
 
 
 def product(request, pk):

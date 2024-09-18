@@ -6,7 +6,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('wholesale/', views.wholesale, name='wholesale'),
     path('product/<int:pk>', views.product, name='product'),
-    path('collections/', views.collections, name='collections'),
-    path('collections/<slug:slug>/', views.collection_detail, name='collection_detail'),  # Collection detail URL
- 
+ path('cdb_collections/', views.cbd_collections, name='cbd_collections'),
+    path('cdb_collections/<slug:slug>/', views.cbd_collections_product_list, name='cbd_collections_product_list'),
 ]

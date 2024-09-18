@@ -15,7 +15,7 @@
                 {% for collection in collections %}
                 
                     <li>
-                        <a href="{% url 'collection_detail' collection.slug %}">
+                        <a href="{% url 'cbd_collections_product_list' collection.slug %}">
                             <div class="collection-card">
                                 {% if collection.image %}
                                     <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
