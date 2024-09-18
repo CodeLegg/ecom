@@ -44,9 +44,10 @@ class Collection(models.Model):
     visible_from = models.DateTimeField(blank=True, null=True)
     visible_to = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
+    parent = models.ForeignKey('self', blank=True, null=True, related_name='subcollections', on_delete=models.SET_NULL)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} (Parent: {self.parent.name if self.parent else 'None'})"
 
     def save(self, *args, **kwargs):
         if not self.slug:
