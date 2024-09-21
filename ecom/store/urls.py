@@ -13,8 +13,8 @@ urlpatterns = [
     # New Sticker collection URLs
     path('sticker-collections/', views.sticker_collections, name='sticker_collections'),
     path('sticker-collections/<slug:slug>/', views.sticker_collections_product_list, name='sticker_collections_product_list'),
-    path('collections/<slug:slug>/sub-collections/', views.sticker_sub_collections_list, name='sticker_sub_collections_list'),
-    path('collections/pre-made-sticker-shop/sub-collections/<slug:slug>/', views.sticker_sub_collections_product_list, name='sticker_sub_collections_product_list'),
-    path('sub-collections/<slug:slug>/', views.sticker_sub_collections_product_list, name='sticker_sub_collections_product_list'),
+    path('sticker-collections/<slug:slug>/themes/', views.sticker_sub_collections_list, name='sticker_sub_collections_list'),
+    path('pre-made-sticker-shop/theme/<slug:slug>/', views.sticker_sub_collections_product_list, name='sticker_sub_collections_product_list'),
+
 
 ]
