@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils.text import slugify
+from mptt.models import MPTTModel, TreeForeignKey
+
 
 
 
@@ -32,7 +34,8 @@ def create_profile(sender, instance, created, **kwargs):
 # Automate the profile thing
 post_save.connect(create_profile, sender=User)
 
-class Collection(models.Model):
+
+class Collection(MPTTModel):
     name = models.CharField(max_length=100)
     slug = models.SlugField(max_length=150, unique=True, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
@@ -44,7 +47,10 @@ class Collection(models.Model):
     visible_from = models.DateTimeField(blank=True, null=True)
     visible_to = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
-    parent = models.ForeignKey('self', blank=True, null=True, related_name='subcollections', on_delete=models.SET_NULL)
+    parent = TreeForeignKey('self', on_delete=models.SET_NULL, null=True, blank=True, related_name='children')
+
+    class MPTTMeta:
+        order_insertion_by = ['order']
 
     def __str__(self):
         return f"{self.name} (Parent: {self.parent.name if self.parent else 'None'})"

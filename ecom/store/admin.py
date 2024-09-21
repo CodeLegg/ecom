@@ -1,7 +1,9 @@
 from django.contrib import admin
 from .models import Collection, Customer, Product, Order
+from django_mptt_admin.admin import DjangoMpttAdmin
+from django.utils.text import slugify
 
-class CollectionAdmin(admin.ModelAdmin):
+class CollectionAdmin(DjangoMpttAdmin):
     list_display = ('name', 'slug', 'is_active', 'is_featured', 'order', 'parent')
     search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
@@ -10,19 +12,33 @@ class CollectionAdmin(admin.ModelAdmin):
 
     # Make 'order' editable directly in the list view
     list_editable = ('order',)
-    
-    # Optionally, make 'parent' editable in the form and add a custom form layout
+
+    # Use MPTT to order nodes according to the tree structure
+    mptt_level_indent = 20  # Indent children by 20 pixels in admin view
+
+    # Optional: Group fields and customize the form layout
     fieldsets = (
         (None, {
             'fields': ('name', 'slug', 'description', 'image', 'is_active', 'is_featured', 'order', 'parent', 'products')
         }),
-        ('Dates', {
+        ('Visibility Dates', {
             'fields': ('visible_from', 'visible_to')
         }),
+        ('Timestamps', {
+            'fields': ('updated_at',)
+        }),
     )
+    readonly_fields = ('updated_at',)
 
-    # Optionally, provide a custom ordering in the admin list view
-    ordering = ['order', 'name']
+    # Enforce slug generation
+    def save_model(self, request, obj, form, change):
+        if not obj.slug:
+            obj.slug = slugify(obj.name)
+        super().save_model(request, obj, form, change)
+
+    # Provide custom ordering in the list view
+    ordering = ['tree_id', 'lft']  # Tree-specific ordering to maintain hierarchy
+
 
 # Register your models here.
 # Now register models with their respective admins
