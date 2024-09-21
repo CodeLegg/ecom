@@ -47,16 +47,16 @@
 <script>
 	// Define URLs dynamically
 	const urls = {
-        customPackaging: "{% url 'cbd_collections_product_list' slug='custom-packaging' %}",
-    readyMadeStrainPackaging: "{% url 'cbd_collections_product_list' slug='ready-made-packaging' %}",
-    blankPackaging: "{% url 'cbd_collections_product_list' slug='blank-packaging' %}",
-    extractPackaging: "{% url 'cbd_collections_product_list' slug='extract-packaging' %}",
-    extractCustomPackaging: "{% url 'cbd_collections_product_list' slug='custom-extract-packaging' %}",
-    designServices: "{% url 'cbd_collections_product_list' slug='design-services' %}",
-    glassStorageJars: "{% url 'cbd_collections_product_list' slug='glass-storage-jars' %}",
-    popTops: "{% url 'cbd_collections_product_list' slug='poptops' %}",
-    blankMylarBags: "{% url 'cbd_collections_product_list' slug='blank-mylar-bags' %}",
-    preRollTubes: "{% url 'cbd_collections_product_list' slug='pre-roll-tubes' %}"
+        customPackaging: "{% url 'sticker_collections_product_list' slug='custom-packaging' %}",
+    readyMadeStrainPackaging: "{% url 'sticker_collections_product_list' slug='ready-made-packaging' %}",
+    blankPackaging: "{% url 'sticker_collections_product_list' slug='blank-packaging' %}",
+    extractPackaging: "{% url 'sticker_collections_product_list' slug='extract-packaging' %}",
+    extractCustomPackaging: "{% url 'sticker_collections_product_list' slug='custom-extract-packaging' %}",
+    designServices: "{% url 'sticker_collections_product_list' slug='design-services' %}",
+    glassStorageJars: "{% url 'sticker_collections_product_list' slug='glass-storage-jars' %}",
+    popTops: "{% url 'sticker_collections_product_list' slug='poptops' %}",
+    blankMylarBags: "{% url 'sticker_collections_product_list' slug='blank-mylar-bags' %}",
+    preRollTubes: "{% url 'sticker_collections_product_list' slug='pre-roll-tubes' %}"
 		// Add other URLs similarly
 	};
 
@@ -83,7 +83,7 @@
             <a href="${urls.extractPackaging}" title="Extract Packaging | No Labels | StickerNeeks">without labels</a>, 
             <a href="${urls.extractCustomPackaging}" title="Custom Extract Packaging | StickerNeeks">upload your own artwork</a>, 
             or 
-            <a href="${urls.designServices}" title="Design Services | StickerNeeks">work with our designers to create your product or brand's packaging.</a>
+            <a href="" title="Design Services | StickerNeeks">work with our designers to create your product or brand's packaging.</a>
             </h4>
             <br>
             <p>
@@ -92,15 +92,7 @@
             
             </p>
             `,
-            'design-services': `
-        <div>
-            <em><strong>3 for 2 on Design Services - Discount applied at checkout</strong></em>
-        </div>
-        <div>
-            We can now use artificial intelligence (AI) to create your graphics, at a fraction of the time and cost, if you so wish! Either way, you will be in direct contact with one or more of our expert designers, who have a fantastic knowledge of the CBD industry - who will work with you from start to finish on your project to make sure the end product is something you love. If you cannot find the design you need here, or need to speak to someone about a more bespoke or larger scale project, please 
-            <a href="mailto:info@StickerNeeks.co.uk" title="Contact Us.">get in touch!</a>
-        </div>
-    `,
+ 
     'print-services': `
         <div>
             <span>

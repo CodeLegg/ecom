@@ -48,14 +48,15 @@ def sticker_collections(request, slug=None):
 def sticker_collections_product_list(request, slug):
     # Try to get the "Stickers, Labels, Design & Print" collection
     stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
-
-    # Redirect if the slug is "stickers-labels-design-print"
-    if slug.lower() == "stickers-labels-design-print":
-        return redirect('sticker_collections')
-
+    
     # Get the collection based on the slug
     collection = get_object_or_404(Collection, slug=slug)
-
+    
+    # Check if the collection has the correct parent
+    if collection.parent != stickers_collection:
+        messages.error(request, "That Collection is not part of the 'Stickers, Labels, Design & Print' collection.")
+        return redirect('sticker_collections')
+    
     # Get all products associated with the collection
     products = Product.objects.filter(collection=collection)
 
@@ -64,6 +65,7 @@ def sticker_collections_product_list(request, slug):
         'products': products,
     }
     return render(request, 'sticker_collections_product_list.html', context)
+
 
 
 def cbd_collections(request, slug=None):
@@ -100,12 +102,13 @@ def cbd_collections_product_list(request, slug):
     # Try to get the "CBD Packaging" collection
     cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
 
-    # Redirect if the slug is "cbd-packaging"
-    if slug.lower() == "cbd-packaging":
-        return redirect('cbd_collections')
-
     # Get the collection based on the slug
     collection = get_object_or_404(Collection, slug=slug)
+
+    # Check if the collection has the correct parent
+    if collection.parent != cbd_packaging:
+        messages.error(request, "That Collection is not part of the 'CBD Packaging' collection.")
+        return redirect('cbd_collections')
 
     # Get all products associated with the collection
     products = Product.objects.filter(collection=collection)
@@ -115,6 +118,7 @@ def cbd_collections_product_list(request, slug):
         'products': products,
     }
     return render(request, 'cbd_collections_product_list.html', context)
+
 
 
 
