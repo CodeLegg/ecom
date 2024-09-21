@@ -261,20 +261,25 @@
 .collection-text p{
 	color: var(--navbar-sidekick3);
 	font-weight: 700;
+    margin: 4px 0; /* Adjust spacing between paragraphs */
+}
+.collection-text .sticker-collection-description{
+	color: var(--navbar-sidekick3);
+	font-weight: 700;
+    margin: 4px 0; /* Adjust spacing between paragraphs */
+    font-size: 13px;
 }
 .collection-text h2 {
     margin: 0;
     font-size: 1.5rem; /* Adjust font size if needed */
 }
 
-.collection-text p {
-    margin: 4px 0; /* Adjust spacing between paragraphs */
-}
-
 .collection-text small {
     display: block;
     margin-top: 5px; /* Space above small text */
 }
+
+/* STICKER COLLECTIONS STYLES */
 
 
 
