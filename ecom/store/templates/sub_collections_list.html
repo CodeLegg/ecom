@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sub-Collections of {{ collection.name }}</h1>
+    {% if sub_collections %}
+        <ul>
+            {% for sub in sub_collections %}
+                <li><a href="{% url 'sticker_sub_collections_product_list' sub.slug %}">{{ sub.name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No sub-collections found.</p>
+    {% endif %}
+{% endblock %}

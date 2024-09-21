@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Products in {{ sub_collection.name }}</h1>
+    {% if products %}
+        <div class="collection-product-grid">
+            {% for product in products %}
+                <!-- Wrap the entire card in an <a> tag linking to the product detail page -->
+                <a href="{% url 'product' product.id %}" class="product-link" style="text-decoration: none; color: inherit;">
+                    <div class="collection-product-card">
+                        <div class="collection-detail-product-image-wrapper">
+                            {% if product.image %}
+                                <img
+                                    src="{{ product.image.url }}"
+                                    alt="{{ product.name }}"
+                                    class="collection-detail-product-image"
+                                />
+                            {% endif %}
+                        </div>
+                        <div class="collection-text">
+                            <h2>{{ product.name }}</h2>
+                            <p class="sticker-collection-description">{{ product.description }}</p>
+                            <!-- Uncomment if price needs to be displayed -->
+                            <!-- <p>Price: ${{ product.price }}</p> -->
+                        </div>
+                        <div class="product-card-overlay"></div>
+                    </div>
+                </a>
+            {% empty %}
+                <p>No products available in this sub-collection.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products available in this sub-collection.</p>
+    {% endif %}
+{% endblock %}

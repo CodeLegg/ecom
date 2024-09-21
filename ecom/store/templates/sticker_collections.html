@@ -12,22 +12,29 @@
         </div>
             
         <div class="collection-grid">
-                {% for collection in collections %}
-                
-                    <li>
+            {% for collection in collections %}
+                <li>
+                    {% if collection.name == "Pre-Made Sticker Shop" %}
+                        <!-- If the collection is "Pre-Made Sticker Shop", use the sticker_sub_collections_list URL -->
+                        <a href="{% url 'sticker_sub_collections_list' collection.slug %}">
+                    {% else %}
+                        <!-- For all other collections, use the sticker_collections_product_list URL -->
                         <a href="{% url 'sticker_collections_product_list' collection.slug %}">
-                            <div class="collection-card">
-                                {% if collection.image %}
-                                    <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
-                                {% endif %}
-                                <h2>{{ collection.name }}</h2>
-                                <p>{{ collection.description }}</p>
-                            </div>
-                        </a>
-                    </li>
-                {% empty %}
-                    <p>No collections available.</p>
-                {% endfor %}
+                    {% endif %}
+                        <div class="collection-card">
+                            {% if collection.image %}
+                                <img src="{{ collection.image.url }}" alt="{{ collection.name }}" class="collection-image">
+                            {% endif %}
+                            <h2>{{ collection.name }}</h2>
+                            <p>{{ collection.description }}</p>
+                        </div>
+                    </a>
+                </li>
+            {% empty %}
+                <p>No collections available.</p>
+            {% endfor %}
+        </div>
+        
             </div>
     </section>
 </main>

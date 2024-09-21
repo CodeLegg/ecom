@@ -45,6 +45,29 @@ def sticker_collections(request, slug=None):
 
     return render(request, 'sticker_collections.html', context)
 
+def sticker_sub_collections_list(request, slug):
+    collection = get_object_or_404(Collection, slug=slug)
+    # Adjust the attribute to 'children' to reflect the model's related_name
+    sub_collections = collection.children.all()
+
+    return render(request, 'sub_collections_list.html', {
+        'collection': collection,
+        'sub_collections': sub_collections
+    })
+
+def sticker_sub_collections_product_list(request, slug):
+    try:
+        sub_collection = Collection.objects.get(slug=slug)  # Getting the specific sub-collection by slug
+        products = Product.objects.filter(collection=sub_collection)  # Assuming a ForeignKey relationship
+    except Collection.DoesNotExist:
+        sub_collection = None
+        products = []
+
+    return render(request, 'sub_collections_product_list.html', {
+        'sub_collection': sub_collection,
+        'products': products
+    })
+
 def sticker_collections_product_list(request, slug):
     # Try to get the "Stickers, Labels, Design & Print" collection
     stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
