@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 <main>
 	<div class="collection-title">
-		<h1>{{ collection.name }}</h1>
+		<h2>{{ collection.name }}</h2>
 	</div>
 
 	<section class="collection-detail">
@@ -10,32 +10,24 @@
 			<!-- The message will be dynamically inserted here -->
 		</div>
 
-		<div class="collection-product-grid">
-			{% for product in products %}
-			<div class="collection-product-card">
-				<div class="collection-detail-product-image-wrapper">
+		<div class="collection-grid">
+			{% for product in products %}					
+            <a href="{% url 'product' product.id %}" class="product-link">
+			<div class="collection-card">
 					{% if product.image %}
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"
-						class="collection-detail-product-image"
+						class="collection-image"
 					/>
-					<a href="{% url 'product' product.id %}" class="product-link">
-						<div class="">
-							<button class="details-button">Details</button>
-						</div>
-					</a>
+					
 					{% endif %}
-				</div>
-				<div class="collection-text">
+				
 					<h2>{{ product.name }}</h2>
-					<p class="sticker-collection-description">{{ product.description }}</p>
-					<!-- <small>from</small>
-					<p>Price: ${{ product.price }}</p> -->
-				</div>
+					<p>{{ product.description }}</p>
+				
 
-				<div class="product-card-overlay"></div>
-			</div>
+			</div></a>
 			{% empty %}
 			<p>No products available in this collection.</p>
 			{% endfor %}
