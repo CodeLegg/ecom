@@ -102,8 +102,10 @@
 }
 
 .collection-image {
-	width: 300px;
+	width: 100%;
 	margin: 0 auto;
+    border-radius: 8px 8px 0 0;
+
 }
 .collection-detail-image {
 	width: 300px;
@@ -111,9 +113,9 @@
 }
 
 .collection-card {
+    position: relative;
 	border: 1px solid #ddd;
 	border-radius: 8px;
-	padding: 1rem;
 	background-color: #fff;
 	width: 350px;
 	box-sizing: border-box;
