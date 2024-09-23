@@ -32,10 +32,20 @@ def sticker_collections(request, slug=None):
     if slug:
         try:
             collection = get_object_or_404(Collection, slug=slug)
-            products = collection.products.filter(is_active=True)
+            products = Product.objects.filter(
+                product_collections__in=collection.get_descendants(include_self=True),
+                is_active=True
+            ).distinct()        
+        
         except Collection.DoesNotExist:
             messages.error(request, "That Collection Doesn't Exist.")
             return redirect('sticker_collections')
+        else:
+        # Return products from the parent collection and all its child collections
+            products = Product.objects.filter(
+            product_collections__in=collections,
+            is_active=True
+        ).distinct()
 
     context = {
         'collection': collection,
@@ -58,7 +68,8 @@ def sticker_sub_collections_list(request, slug):
 def sticker_sub_collections_product_list(request, slug):
     try:
         sub_collection = Collection.objects.get(slug=slug)  # Getting the specific sub-collection by slug
-        products = Product.objects.filter(collection=sub_collection)  # Assuming a ForeignKey relationship
+        # Use the ManyToManyField `product_collections` to filter products
+        products = Product.objects.filter(product_collections=sub_collection, is_active=True)  
     except Collection.DoesNotExist:
         sub_collection = None
         products = []
@@ -68,10 +79,11 @@ def sticker_sub_collections_product_list(request, slug):
         'products': products
     })
 
+
 def sticker_collections_product_list(request, slug):
     # Try to get the "Stickers, Labels, Design & Print" collection
     stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
-    
+
     # Get the collection based on the slug
     collection = get_object_or_404(Collection, slug=slug)
     
@@ -80,14 +92,19 @@ def sticker_collections_product_list(request, slug):
         messages.error(request, "That Collection is not part of the 'Stickers, Labels, Design & Print' collection.")
         return redirect('sticker_collections')
     
-    # Get all products associated with the collection
-    products = Product.objects.filter(collection=collection)
+    # Get products from the current collection and all of its sub-collections
+    products = Product.objects.filter(
+        product_collections__in=collection.get_descendants(include_self=True),
+        is_active=True
+    ).distinct()
 
     context = {
         'collection': collection,
         'products': products,
     }
+
     return render(request, 'sticker_collections_product_list.html', context)
+
 
 
 
@@ -108,7 +125,8 @@ def cbd_collections(request, slug=None):
     if slug:
         try:
             collection = get_object_or_404(Collection, slug=slug)
-            products = collection.products.filter(is_active=True)
+            # Use ManyToManyField to filter products
+            products = Product.objects.filter(product_collections=collection, is_active=True)
         except Collection.DoesNotExist:
             messages.error(request, "That Collection Doesn't Exist.")
             return redirect('cbd_collections')
@@ -120,6 +138,7 @@ def cbd_collections(request, slug=None):
     }
 
     return render(request, 'cbd_collections.html', context)
+
 
 def cbd_collections_product_list(request, slug):
     # Try to get the "CBD Packaging" collection
@@ -133,8 +152,8 @@ def cbd_collections_product_list(request, slug):
         messages.error(request, "That Collection is not part of the 'CBD Packaging' collection.")
         return redirect('cbd_collections')
 
-    # Get all products associated with the collection
-    products = Product.objects.filter(collection=collection)
+   # Use ManyToManyField to filter products
+    products = Product.objects.filter(product_collections=collection, is_active=True)
 
     context = {
         'collection': collection,
