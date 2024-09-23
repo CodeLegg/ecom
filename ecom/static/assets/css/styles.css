@@ -502,9 +502,32 @@ ul.pushNav {
 \*-----------------------------------*/
 
 footer {
-	background: var(--navbar);
-	padding: 30px 0;
+	position: relative; /* This makes sure the splatter is positioned relative to the footer */
+	background-color: var(--navbar); /* Footer background color */
+	padding-top: 30px; /* Adjust the footer padding to accommodate the splatter image height */ 
+z-index: 1;
 }
+  
+  .splatter-container {
+	position: absolute;
+	top: -12.7vw; /* Using vw (viewport width) units for a more responsive design */
+	left: 0;
+	right: 0;
+	width: 100%; /* Ensures the image container stretches across the footer width */
+	display: flex;
+	justify-content: center; /* Center the image */
+	pointer-events: none; /* Makes sure the image doesn’t interfere with other elements */
+	z-index: 0; /* Ensure it stays above the footer but below other content */
+  }
+  
+  .splatter-container img {
+	width: 100%;
+	height: auto; /* Keep image aspect ratio */
+	object-fit: cover; /* Ensures the image covers the container properly */
+  }
+  
+
+
 
 /**
    * footer nav 
