@@ -12,7 +12,7 @@
 
 		<div class="collection-grid">
 			{% for product in products %}					
-            <a href="{% url 'product' product.id %}" class="product-link">
+            <a href="{% url 'product' slug=product.slug %}" class="product-link">
 			<div class="collection-card">
 					{% if product.image %}
 					<img

@@ -167,7 +167,6 @@
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 1rem;
     padding: var(--splatter-padding-collection-grid);
-    justify-items: center;  /* Centers grid items horizontally */
     align-items: center;    /* Centers grid items vertically */
 }
 
