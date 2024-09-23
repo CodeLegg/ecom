@@ -242,7 +242,7 @@ ul.pushNav {
 	height: 100%;
 	position: fixed;
 	top: 0;
-	z-index: 12;
+	z-index: 21;
 	overflow: hidden;
 	background: var(--white);
 	width: 100%;
