@@ -20,7 +20,7 @@
 						alt="{{ product.name }}"
 						class="collection-detail-product-image"
 					/>
-					<a href="{% url 'product' product.id %}" class="product-link">
+					<a href="{% url 'product' slug=product.slug %}" class="product-link">
 						<div class="">
 							<button class="details-button">Details</button>
 						</div>

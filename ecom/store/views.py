@@ -145,6 +145,6 @@ def cbd_collections_product_list(request, slug):
 
 
 
-def product(request, pk):
-    product = get_object_or_404(Product, id=pk)
+def product(request, slug):
+    product = get_object_or_404(Product, slug=slug)
     return render(request, 'product.html', {'product': product})
