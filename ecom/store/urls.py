@@ -15,6 +15,7 @@ urlpatterns = [
     path('sticker-collections/<slug:slug>/', views.sticker_collections_product_list, name='sticker_collections_product_list'),
     path('sticker-collections/<slug:slug>/themes/', views.sticker_sub_collections_list, name='sticker_sub_collections_list'),
     path('pre-made-sticker-shop/theme/<slug:slug>/', views.sticker_sub_collections_product_list, name='sticker_sub_collections_product_list'),
+    path('confirm-age/', views.confirm_age, name='confirm_age'),
 
 
 ]

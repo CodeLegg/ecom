@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Collection, Product  # Ensure correct import
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 
 # Create your views here.
@@ -106,26 +109,24 @@ def sticker_collections_product_list(request, slug):
     return render(request, 'sticker_collections_product_list.html', context)
 
 
-
-
 def cbd_collections(request, slug=None):
+    # Check if age is confirmed
+    if not request.session.get('age_confirmed', False):
+        return render(request, 'cbd_collections.html', {'show_age_modal': True})
+
+    # The rest of your view logic remains the same
     collection = None
     products = None
 
-    # Try to get the "CBD Packaging" collection
     cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
-
-    # Get collections that are children of "CBD Packaging"
     collections = Collection.objects.filter(parent=cbd_packaging)
 
-    # Redirect to home if the requested collection slug is "cbd-packaging"
     if slug and slug.lower() == "cbd-packaging":
         return redirect('cbd_collections')
 
     if slug:
         try:
             collection = get_object_or_404(Collection, slug=slug)
-            # Use ManyToManyField to filter products
             products = Product.objects.filter(product_collections=collection, is_active=True)
         except Collection.DoesNotExist:
             messages.error(request, "That Collection Doesn't Exist.")
@@ -141,18 +142,17 @@ def cbd_collections(request, slug=None):
 
 
 def cbd_collections_product_list(request, slug):
-    # Try to get the "CBD Packaging" collection
-    cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
+    # Check if age is confirmed
+    if not request.session.get('age_confirmed', False):
+        return render(request, 'cbd_collections.html', {'show_age_modal': True})
 
-    # Get the collection based on the slug
+    cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
     collection = get_object_or_404(Collection, slug=slug)
 
-    # Check if the collection has the correct parent
     if collection.parent != cbd_packaging:
         messages.error(request, "That Collection is not part of the 'CBD Packaging' collection.")
         return redirect('cbd_collections')
 
-   # Use ManyToManyField to filter products
     products = Product.objects.filter(product_collections=collection, is_active=True)
 
     context = {
@@ -162,8 +162,15 @@ def cbd_collections_product_list(request, slug):
     return render(request, 'cbd_collections_product_list.html', context)
 
 
-
-
 def product(request, slug):
     product = get_object_or_404(Product, slug=slug)
     return render(request, 'product.html', {'product': product})
+
+@csrf_exempt
+def confirm_age(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        if data.get('age_confirmed', False):
+            request.session['age_confirmed'] = True
+            return JsonResponse({'success': True})
+    return JsonResponse({'success': False}, status=400)
