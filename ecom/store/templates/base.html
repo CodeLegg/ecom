@@ -11,6 +11,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="{% static 'assets/css/styles.css'%}">
     <link rel="stylesheet" href="{% static 'assets/css/collection.css'%}">
+    <link rel="stylesheet" href="{% static 'assets/css/home.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -29,13 +30,9 @@
         <div class="top-header">
             <div class="container">
 
-                <div class="brand-container">
-                    <div class="rounded-square">
-                        <i class="fa-solid fa-glasses"></i>
-                    </div>
-                </div>
-
                 <h2 class="logo-name">STICKERNEEKS</h2>
+
+                <button class="temp-search"><i class="fa-solid fa-search"></i></button>
 
                 <button class="action-btn hamburger js-menuOpen" name="navbarbutton">
                     <div class="bar"></div>
@@ -66,11 +63,6 @@
 
                         <!-- Mobile Navbar Push Level Back Navigation -->
                         <div class="mobile-nav-header">
-                            <div class="brand-container">
-                                <div class="rounded-square">
-                                    <i class="fa-solid fa-glasses"></i>
-                                </div>
-                            </div>
                             <h2 class="logo-name">STICKERNEEKS</h2>
                             <!-- <p>StickerNeeks 2024</p> -->
 
@@ -138,9 +130,14 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="{% url 'sticker_collections_product_list' slug='custom-stickers' %}">Custom Stickers</a></li>
-                                        <li><a href="{% url 'sticker_collections_product_list' slug='custom-labels' %}">Custom Labels</a></li>
-                                        <li><a href="{% url 'sticker_collections_product_list' slug='materials' %}">Materials</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_collections_product_list' slug='custom-stickers' %}">Custom
+                                                Stickers</a></li>
+                                        <li><a href="{% url 'sticker_collections_product_list' slug='custom-labels' %}">Custom
+                                                Labels</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_collections_product_list' slug='materials' %}">Materials</a>
+                                        </li>
                                         <li><a href="{% url 'sticker_collections' %}">View All Collections</a></li>
 
                                     </ul>
@@ -208,19 +205,25 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="#">Business Essentials</a></li>
-                                        <li><a href="#">Trade and Expo</a></li>
-                                        <li><a href="#">Sticker Printing</a></li>
-                                        <li><a href="#">Presstin™ Label Printing</a></li>
-                                        <li>
+                                        <li><a href="{% url 'product' slug='custom-die-cut-stickers' %}">Die-Cut Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-sticker-sheets' %}">Sticker Sheets</a></li>
+                                        <li><a href="{% url 'product' slug='custom-kiss-cut-stickers' %}">Kiss Cut Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-hang-tag-stickers' %}">Hang Tag Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-epoxy-dome-stickers' %}">Epoxy Dome Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-front-adhesive-stickers' %}">Front Adhesive Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-heavy-duty-stickers' %}">Heavy Duty Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-removable-stickers' %}">Removeable Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-wall-stickers' %}">Wall Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-floor-stickers' %}">Floor Stickers</a></li>
+                                        <li><a href="{% url 'product' slug='custom-singles-on-sheet' %}">Singles On Sheet</a></li>                                        
+                                        <!-- <li>
                                             <div class="openLevel js-openLevel">
-                                                Mylar Bag Label Printing
+                                                #
                                                 <i class="fa fa-chevron-right"></i>
                                             </div>
 
                                             <ul class="pushNav pushNav_Level_Right js-pushNavLevelBack">
 
-                                                <!-- Mobile Navbar Push Level Back Navigation -->
                                                 <div class="mobile-nav-header">
                                                     <button class="close-btn backLevel js-backLevel ">
                                                         <i class="fa fa-chevron-left"></i>
@@ -235,16 +238,9 @@
                                                 <li><a href="#">Square Mylar Bag Label Printing</a></li>
                                                 <li><a href="#">Rounded Corner Mylar Bag Printing</a></li>
                                             </ul>
-                                        </li>
+                                        </li> -->
 
-                                        <li><a href="#">Glass Jar Label Printing</a></li>
-                                        <li><a href="#">RX Label Printing</a></li>
-                                        <li><a href="#">Lighter Wrap Printing</a></li>
-                                        <li><a href="#">Pre-Roll Tube Label Printing</a></li>
-                                        <li><a href="#">Vape Tank Tube Label Printing</a></li>
-                                        <li><a href="#">Custom Print Quote</a></li>
-                                        <li><a href="#">On Sheets</a></li>
-                                        <li><a href="#">All Print Services</a></li>
+                                        <li><a href="{% url 'product' slug='all-custom-stickers' %}">All Print Services</a></li>
 
                                     </ul>
 
@@ -276,20 +272,18 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="#">Glass Jars</a></li>
-                                        <li><a href="#">Presstin™ Label Print</a></li>
-                                        <li><a href="#">Mylar Bags</a></li>
-                                        <li><a href="#">Vape Cartridges</a></li>
-                                        <li><a href="#">Pre Roll Tubes</a></li>
-                                        <li><a href="#">Lighter Wraps</a></li>
-                                        <li><a href="#">Vape Tank Tubes</a></li>
-                                        <li><a href="#">Custom Packaging Quote</a></li>
-                                        <li><a href="#">All Packaging Services</a></li>
+                                        <li><a href="{% url 'product' slug='custom-jar-labels' %}">Jars Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-bottle-labels' %}">Bottle Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-beer-labels' %}">Beer Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-labels-on-roll' %}">Labels On Rolls</a></li>
+                                        <li><a href="{% url 'product' slug='custom-barcode-labels' %}">Barcode Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-brand-labels' %}">Brand Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-candle-labels' %}">Candle Labels</a></li>
+                                        <li><a href="{% url 'product' slug='custom-cosmetic-labels' %}">Cosmetic Labels</a></li>
+                                        <li><a href="{% url 'product' slug='all-custom-labels' %}">All Print Services</a></li>
+
 
                                     </ul>
-
-
-
 
                                 </li>
 
@@ -316,12 +310,9 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="#">Strain Info Labels</a></li>
-                                        <li><a href="#">Rectangle Pro-Roll Labels</a></li>
-                                        <li><a href="#">Circular Strain Stickers</a></li>
-                                        <li><a href="#">Pull-ring Tin Labels (Presstin™)</a></li>
-                                        <li><a href="#">Glass Jar / Tamper Pot Labels</a></li>
-                                        <li><a href="#">Mylar Sticker Bag Labels</a></li>
+                                        <li><a href="#">Slap Pack</a></li>
+                                        <li><a href="#">Custom Sticker Packs</a></li>
+                                        <li><a href="#">Sample Pack</a></li>
 
 
                                     </ul>
@@ -330,7 +321,7 @@
 
 
                                 </li>
-                                
+
                                 <!--  Pre-Made Sticker Shop Link -->
                                 <li>
 
@@ -354,19 +345,43 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='pets-animals' %}">Pets and Animals</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='floral-botanical' %}">Floral & Botanical</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='food-and-beverages' %}">Food and Beverages</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='motivational-quotes' %}">Motivational Quotes</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='seasonal-and-holiday' %}">Seasonal and Holiday</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='sports-and-fitness' %}">Sports and Fitness</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='music-and-instruments' %}">Music and Instruments</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='pop-culture-and-trends' %}">Pop Culture and Trends</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='art-and-abstract' %}">Art and Abstract</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='travel-and-landmarks' %}">	Travel and Landmarks</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='vintage-and-retro' %}">Vintage and Retro</a></li>
-                                        <li><a href="{% url 'sticker_sub_collections_product_list' slug='fantasy-and-mythology' %}">Fantasy and Mythology</a></li>
-                                      
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='pets-animals' %}">Pets
+                                                and Animals</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='floral-botanical' %}">Floral
+                                                & Botanical</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='food-and-beverages' %}">Food
+                                                and Beverages</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='motivational-quotes' %}">Motivational
+                                                Quotes</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='seasonal-and-holiday' %}">Seasonal
+                                                and Holiday</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='sports-and-fitness' %}">Sports
+                                                and Fitness</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='music-and-instruments' %}">Music
+                                                and Instruments</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='pop-culture-and-trends' %}">Pop
+                                                Culture and Trends</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='art-and-abstract' %}">Art
+                                                and Abstract</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='travel-and-landmarks' %}">
+                                                Travel and Landmarks</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='vintage-and-retro' %}">Vintage
+                                                and Retro</a></li>
+                                        <li><a
+                                                href="{% url 'sticker_sub_collections_product_list' slug='fantasy-and-mythology' %}">Fantasy
+                                                and Mythology</a></li>
+
 
                                     </ul>
 
@@ -374,14 +389,14 @@
 
 
                                 </li>
-                                
-                                    <!-- List Item Link -->
-                        <li>
-                            <a href="{% url 'wholesale'%}">
-                                Business Essentials
-                                <div class=""></div>
-                            </a>
-                        </li>
+
+                                <!-- List Item Link -->
+                                <li>
+                                    <a href="{% url 'wholesale'%}">
+                                        Business Essentials
+                                        <div class=""></div>
+                                    </a>
+                                </li>
 
                             </ul>
                             <!-- End section 1 -->
@@ -434,10 +449,14 @@
                                             </button>
                                         </div>
 
-                                        <li><a href="{% url 'cbd_collections_product_list' slug='vape-packaging' %}">Vape Packaging</a></li>
-                                        <li><a href="{% url 'cbd_collections_product_list' slug='edible-packaging' %}">Edible Packaging</a></li>
-                                        <li><a href="{% url 'cbd_collections_product_list' slug='flower-packaging' %}">Flower Packaging</a></li>
-                                        <li><a href="{% url 'cbd_collections_product_list' slug='extract-packaging' %}">Blank Extract Packaging</a></li>
+                                        <li><a href="{% url 'cbd_collections_product_list' slug='vape-packaging' %}">Vape
+                                                Packaging</a></li>
+                                        <li><a href="{% url 'cbd_collections_product_list' slug='edible-packaging' %}">Edible
+                                                Packaging</a></li>
+                                        <li><a href="{% url 'cbd_collections_product_list' slug='flower-packaging' %}">Flower
+                                                Packaging</a></li>
+                                        <li><a href="{% url 'cbd_collections_product_list' slug='extract-packaging' %}">Blank
+                                                Extract Packaging</a></li>
                                         <li><a href="{% url 'cbd_collections' %}">View All Collections</a></li>
 
 
@@ -697,11 +716,11 @@
                                             </button>
                                         </div>
 
-                                                <li><a href="#">Custom Grinder</a></li>
-                                                <li><a href="#">Custom Rolling-Tray</a></li>
-                                                <li><a href="#">Custom Lighter</a></li>
-                                                <li><a href="#">Custom Ashtray</a></li>
-                                                <li><a href="#">Custom Jars</a></li>
+                                        <li><a href="#">Custom Grinder</a></li>
+                                        <li><a href="#">Custom Rolling-Tray</a></li>
+                                        <li><a href="#">Custom Lighter</a></li>
+                                        <li><a href="#">Custom Ashtray</a></li>
+                                        <li><a href="#">Custom Jars</a></li>
 
                                     </ul>
                                     <!-- End section 1 -->
@@ -714,7 +733,7 @@
                             </ul>
                             <!-- End section 1 -->
                         </li>
-                        
+
 
                         <!-- Custom Merchandise normal -->
                         <li>
@@ -932,7 +951,7 @@
     </div>
 
 
-  
+
     <!--
     - FOOTER
   -->
@@ -940,11 +959,11 @@
     <footer>
         <div class="footer-splitter"></div>
         <div class="splatter-container">
-          <img src="{% static 'assets/images/splatter.webp' %}" alt="Splatter Image">
+            <img src="{% static 'assets/images/splatter.webp' %}" alt="Splatter Image">
         </div>
 
         <div class="footer-nav">
-         
+
             <div class="container">
 
                 <ul class="footer-nav-list">

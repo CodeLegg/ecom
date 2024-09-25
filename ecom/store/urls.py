@@ -5,6 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.home, name='home'),
     path('wholesale/', views.wholesale, name='wholesale'),
+    path('cbd-section/', views.cbd_section, name='cbd_section'),
     path('product/<slug:slug>', views.product, name='product'),
     # Existing CBD collection URLs
     path('cbd-collections/', views.cbd_collections, name='cbd_collections'),

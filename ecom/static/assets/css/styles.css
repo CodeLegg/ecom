@@ -20,9 +20,9 @@
 
 	--navbar: hsl(0, 0%, 10%);
 	--navbar-sidekick2: hsl(88, 69%, 64%); /* Original color */
-    --navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
-    --navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
-    --text-green: #228B22; /* High-contrast green */
+	--navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
+	--navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
+	--text-green: #228b22; /* High-contrast green */
 	--offwhite: hsl(35, 100%, 98%);
 	--darkgrey: hsl(0, 0%, 92%);
 	--lightgrey: hsl(0, 0%, 87%);
@@ -80,12 +80,12 @@
 
 	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
 
-	  /**
+	/**
    * border-radius
    */
 
-   --border-radius-md: 10px;
-   --border-radius-sm: 5px;
+	--border-radius-md: 10px;
+	--border-radius-sm: 5px;
 }
 
 /*-----------------------------------*\
@@ -155,22 +155,6 @@ body {
 	font-size: 1.6rem;
 }
 
-::-webkit-scrollbar {
-	width: 5px;
-}
-
-::-webkit-scrollbar-track {
-	background-color: hsl(0, 0%, 95%);
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: hsl(0, 0%, 80%);
-}
-
-::-webkit-scrollbar-thumb:hover {
-	background-color: hsl(0, 0%, 70%);
-}
-
 /*-------------*\
   #TOP HEADER
   \*-------------*/
@@ -187,7 +171,7 @@ body {
   \*-------------*/
 
 .container {
-	padding-inline: 15px;
+	padding-inline: 10px;
 }
 .bottom-header > .container {
 	padding-inline: 0px;
@@ -255,6 +239,7 @@ ul.pushNav {
 	width: 100%;
 	right: -100%;
 	transition: cubic-bezier(0.51, 0.03, 0.64, 0.28) 0.4s;
+	overflow-y: auto;
 }
 
 .js-pushmobileMenu.isOpen,
@@ -283,7 +268,7 @@ ul.pushNav {
 	justify-content: space-between;
 	align-items: center;
 	background-color: var(--navbar);
-	padding-inline: 15px;
+	padding-inline: 10px 15px;
 }
 
 .mobile-nav-header p {
@@ -487,22 +472,8 @@ ul.pushNav {
 	transition: opacity 0.3s ease;
 }
 
-/* Initial state: show hamburger icon and hide cross icon */
-.hamburger i.fa-xmark {
-	display: none;
-}
 
-/* When the menu is toggled, show the cross icon and hide the hamburger icon */
-.hamburger.active i.fa-bars {
-	display: none;
-}
 
-.hamburger.active i.fa-xmark {
-	display: inline;
-}
-.fa-xmark {
-	font-size: 28px;
-}
 
 /*-----------------------------------*\
   #FOOTER
@@ -511,11 +482,11 @@ ul.pushNav {
 footer {
 	position: relative; /* This makes sure the splatter is positioned relative to the footer */
 	background-color: var(--navbar); /* Footer background color */
-	padding-top: 30px; /* Adjust the footer padding to accommodate the splatter image height */ 
-z-index: 1;
+	padding-top: 30px; /* Adjust the footer padding to accommodate the splatter image height */
+	z-index: 1;
 }
-  
-  .splatter-container {
+
+.splatter-container {
 	position: absolute;
 	top: -12.7vw; /* Using vw (viewport width) units for a more responsive design */
 	left: 0;
@@ -525,16 +496,13 @@ z-index: 1;
 	justify-content: center; /* Center the image */
 	pointer-events: none; /* Makes sure the image doesn’t interfere with other elements */
 	z-index: 0; /* Ensure it stays above the footer but below other content */
-  }
-  
-  .splatter-container img {
+}
+
+.splatter-container img {
 	width: 100%;
 	height: auto; /* Keep image aspect ratio */
 	object-fit: cover; /* Ensures the image covers the container properly */
-  }
-  
-
-
+}
 
 /**
    * footer nav 
@@ -642,157 +610,69 @@ z-index: 1;
 	color: inherit;
 }
 
-/**
-   * #BANNER
-   */
-
-/*-----------------------------------*\
-  #BANNER
-\*-----------------------------------*/
-
-.banner {
-	margin: 30px 0;
-}
-
-.slider-container {
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	border-radius: var(--border-radius-md);
-	overflow: auto hidden;
-	scroll-snap-type: inline mandatory;
-	overscroll-behavior-inline: contain;
-}
-
-.slider-item {
-	position: relative;
-	min-width: 100%;
-	max-height: 450px;
-	aspect-ratio: 1 / 1;
-	border-radius: var(--border-radius-md);
-	overflow: hidden;
-	scroll-snap-align: start;
-}
-
-.slider-item .banner-img {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: right;
-}
-
-.banner-content {
-	background: hsla(0, 0%, 100%, 0.8);
-	position: absolute;
-	bottom: 25px;
-	left: 25px;
-	right: 25px;
-	padding: 20px 25px;
-	border-radius: var(--border-radius-md);
-}
-
-.banner-subtitle {
-	color: var(--salmon-pink);
-	font-size: var(--fs-7);
-	font-weight: var(--weight-500);
-	text-transform: capitalize;
-	letter-spacing: 2px;
-	margin-bottom: 10px;
-}
-
-.banner-title {
-	color: var(--eerie-black);
-	font-size: var(--fs-1);
-	text-transform: uppercase;
-	line-height: 1;
-	margin-bottom: 10px;
-}
-
-.banner-text {
-	display: none;
-}
-
-.banner-btn {
-	background: var(--navbar-sidekick2);
-	color: var(--navbar);
-	width: max-content;
-	font-size: var(--fs-11);
-	font-weight: var(--weight-600);
-	text-transform: uppercase;
-	padding: 4px 10px;
-	border-radius: var(--border-radius-sm);
-	transition: var(--transition-timing);
-}
-
-.banner-btn:hover {
-	background: var(--eerie-black);
-}
-
 
 
 /* Style the modal itself */
 .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgba(0, 0, 0, 0.99); /* Black background with opacity */
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1000; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	background-color: rgba(0, 0, 0, 0.99); /* Black background with opacity */
 }
 
 /* Modal content box */
 .modal-content {
-    position: relative;
-    background-color: #fff;
-	margin: auto 0;    
+	position: relative;
+	background-color: #fff;
+	margin: auto 0;
 	padding: 20px;
-    border: 1px solid #888;
-    width: 300px; /* Set width */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center; /* Center text inside the modal */
-    border-radius: 10px; /* Rounded corners */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+	border: 1px solid #888;
+	width: 300px; /* Set width */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	text-align: center; /* Center text inside the modal */
+	border-radius: 10px; /* Rounded corners */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* Input field styles */
 #dob {
-    width: 100%;
-    padding: 10px;
-    margin-block: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    background-color: #f0f0f0; /* Grey background */
-    color: #333; /* Text color */
-    font-size: 16px;
-	
+	width: 100%;
+	padding: 10px;
+	margin-block: 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+	background-color: #f0f0f0; /* Grey background */
+	color: #333; /* Text color */
+	font-size: 16px;
 }
 
 /* Button styles */
 .modal button {
-    background-color: #4CAF50; /* Green background */
-    color: white; /* White text */
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+	background-color: #4caf50; /* Green background */
+	color: white; /* White text */
+	padding: 10px 20px;
+	margin-top: 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
 	margin: 0 auto;
 }
 
 /* Button hover effect */
 .modal button:hover {
-    background-color: #45a049; /* Darker green */
+	background-color: #45a049; /* Darker green */
 }
 
 /* Style for mobile responsiveness */
 @media screen and (max-width: 768px) {
-    .modal-content {
-        width: 80%;
-    }
+	.modal-content {
+		width: 80%;
+	}
 }
-

@@ -6,16 +6,54 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 
-# Create your views here.
+from django.shortcuts import render, get_object_or_404
+from .models import Collection, Product
+
+from django.shortcuts import render, get_object_or_404
+from .models import Collection, Product
+
 def home(request):
-    return render(request, 'home.html', {})
+    # Fetch the "Stickers, Labels, Design & Print" and "Pre-Made Sticker Shop" collections
+    stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
+    premade_collection = get_object_or_404(Collection, name="Pre-Made Sticker Shop")
+
+    # Fetch child collections for both parent collections
+    sticker_subcollections = Collection.objects.filter(parent=stickers_collection)
+    premade_subcollections = Collection.objects.filter(parent=premade_collection)
+    
+    # Combine the collections
+    collections = sticker_subcollections | premade_subcollections
+
+    # Slugs of specific products you want to display
+    selected_slugs = ['custom-die-cut-stickers', 'colorful-bear', 'the-gay-bear']  # Add your slugs here
+
+    # Filter products by their slugs from both collections and their descendants
+    products = Product.objects.filter(
+        product_collections__in=stickers_collection.get_descendants(include_self=True) |
+                               premade_collection.get_descendants(include_self=True),
+        slug__in=selected_slugs,  # Filter products by slug
+        is_active=True
+    ).distinct()
+
+    # Pass the collections and products to the context
+    context = {
+        'stickers_collection': stickers_collection,
+        'premade_collection': premade_collection,
+        'collections': collections,
+        'products': products,
+    }
+
+    return render(request, 'home.html', context)
+
+
+
+
 
 def wholesale(request):
     return render(request, 'wholesale.html', {})
 
-from django.shortcuts import get_object_or_404, redirect, render
-from django.contrib import messages
-from .models import Collection, Product
+def cbd_section(request):
+    return render(request, 'cbd_section.html', {})
 
 
 def sticker_collections(request, slug=None):
