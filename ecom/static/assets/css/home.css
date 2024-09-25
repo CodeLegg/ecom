@@ -90,9 +90,6 @@
 	--border-radius-sm: 5px;
 }
 
-/**
-   * #BANNER
-   */
 
 /*-----------------------------------*\
   #BANNER
@@ -129,13 +126,16 @@
 	object-position: right;
 }
 
+/*-----------------------------------*\
+  #BANNER 1
+\*-----------------------------------*/
+
 .seasonal-content {
 	width: 100%;
     position: absolute;
     top: 52%;
     left: 50%;
     transform: translate(-50%, -50%);
-    /* padding: 20px 25px; */
     border-radius: var(--border-radius-md);
 	text-align: center;
 	margin-block: 5px;
@@ -187,7 +187,7 @@
 }
 
 .seasonal-btn {
-	background: red; /* Starting color */
+	background: red; 
 	color: var(--white);
 	width: max-content;
 	font-size: 15px;
@@ -197,10 +197,10 @@
 	border-radius: var(--border-radius-sm);
 	transition: var(--transition-timing);
 	margin: 0 auto;
-	animation: flash-colors 5s infinite; /* 3-second rainbow transition */
+	animation: flash-colors 5s infinite; /* 5-second rainbow transition */
 }
 
-
+/* rest of banner content */
 
 .banner-content {
 	background: hsla(0, 0%, 100%, 0.8);
@@ -248,122 +248,10 @@
 .banner-btn:hover {
 	background: var(--eerie-black);
 }
-
-
-
-
-/*-----------------------------------*\
-  #FEATURED PRODUCTS SLIDER
-\*-----------------------------------*/
-
-.showcase-wrapper-wrapper {
-    position: relative; /* To position arrows inside */
-    background-color: var(--lightgrey);
-    padding: 10px 10px 5px 10px;
-    border-radius: 10px;
-}
-
-.showcase-wrapper {
-    background-color: var(--lightgrey);
-    border-radius: 10px;
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevents line breaks inside the container */
-}
-
-.showcase {
-    display: flex; /* Flexbox for horizontal layout */
-    gap: 15px; /* Add space between the items */
-}
-.showcase-title{
-font-size: 11px;
-}
-
-.showcase-card {
-    background: white;
-    border-radius: 10px;
-    padding: 5px;
-    text-align: center;
-    width: 200px; /* Set a fixed width to the product cards */
-    flex-shrink: 0; /* Prevent shrinking of the cards */
-    display: flex;
-    justify-content: space-around;
-}
-
-.showcase-content {
-	flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Keep titles aligned at the top */
-    align-items: center;
-}
-
-.showcase-description {
-    font-size: 0.9em;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap; /* Prevent text wrapping */
-}
-
-.showcase-img {
-    width: 80px;
-    height: auto;
-    border-radius: 10px;
-}
-
-.price-box {
-    font-size: 1em;
-    margin-top: 5px;
-}
-
-.price {
-    color: var(--navbar-sidekick2);
-    font-weight: bold;
-}
-
-del {
-    color: gray;
-    text-decoration: line-through;
-}
-
-/* Arrow Styling */
-.arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-	width: 25px;
-	height: 25px;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 10;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Move the arrows outward */
-.left-arrow {
-    left: -8px; /* Move the left arrow further out */
-}
-
-.right-arrow {
-    right: -8px; /* Move the right arrow further out */
-}
-
-
-.arrow:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
   
-
-  /*-------------*\
+/*-----------------------------------*\
   #HAS-SCROLLBAR
-  \*-------------*/
+\*-----------------------------------*/
 
 .has-scrollbar{
 	padding-bottom: 5px;
@@ -391,9 +279,9 @@ del {
 }
 
 
-
-
-/* boxes */
+/*-----------------------------------*\
+  #BOXES
+\*-----------------------------------*/
 
 .boxes-container{
 padding:  0 10px;	
@@ -436,17 +324,15 @@ padding:  0 10px;
 }
 
 /* box 2 */
-
-/* Select the 2nd, 3rd, 4th, and 5th child and change their background */
 .two{
-	background-image: url(../images/custom-labels.webp); /* Replace with the desired background image */
-	background-position: center center; /* Adjust as needed */
+	background-image: url(../images/custom-labels.webp); 
+	background-position: center center; 
 	background-size: 80%;
-	position: relative; /* Required to position the overlay */
-    overflow: hidden; /* Ensures the overlay stays inside the box */
+	position: relative; 
+    overflow: hidden; 
 }
 
-/* Green overlay */
+/* overlay */
 .two::before {
     content: "";
     position: absolute;
@@ -454,9 +340,9 @@ padding:  0 10px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 125, 125, 0.5); /* Green overlay with 50% opacity */
-    z-index: 1; /* Ensures the overlay is above the background but below any text */
-    border-radius: inherit; /* Inherit the border radius from the parent box */
+    background-color: rgba(0, 125, 125, 0.5); 
+    z-index: 1;
+    border-radius: inherit; 
 }
 
 /* To ensure any text or content appears above the overlay */
@@ -467,15 +353,15 @@ padding:  0 10px;
 
 /* box 3 */
 .three{
-	background-image: url(../images/banner-1-neon.jpg); /* Replace with the desired background image */
-	background-position: center center; /* Adjust as needed */
+	background-image: url(../images/banner-1-neon.jpg); 
+	background-position: center center; 
 	background-size: 100%;
 	background-repeat: no-repeat;
-	position: relative; /* Required to position the overlay */
-    overflow: hidden; /* Ensures the overlay stays inside the box */
+	position: relative; 
+    overflow: hidden; 
 }
 
-/* Green overlay */
+/* overlay */
 .three::before {
     content: "";
     position: absolute;
@@ -483,9 +369,9 @@ padding:  0 10px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 62, 128, 0.5); /* Green overlay with 50% opacity */
-    z-index: 1; /* Ensures the overlay is above the background but below any text */
-    border-radius: inherit; /* Inherit the border radius from the parent box */
+    background-color: rgba(0, 62, 128, 0.5); 
+    z-index: 1; 
+    border-radius: inherit; 
 }
 
 /* To ensure any text or content appears above the overlay */
@@ -496,15 +382,15 @@ padding:  0 10px;
 
 /* box 4 */
 .four{
-	background-image: url(../images/stickershop.webp); /* Replace with the desired background image */
-	background-position: center; /* Adjust as needed */
+	background-image: url(../images/stickershop.webp); 
+	background-position: center; 
 	background-size: 100%;
 	background-repeat: no-repeat;
-	position: relative; /* Required to position the overlay */
-    overflow: hidden; /* Ensures the overlay stays inside the box */
+	position: relative; 
+    overflow: hidden; 
 }
 
-/* Green overlay */
+/* overlay */
 .four::before {
     content: "";
     position: absolute;
@@ -512,9 +398,9 @@ padding:  0 10px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(196, 117, 0, 0.5); /* Green overlay with 50% opacity */
-    z-index: 1; /* Ensures the overlay is above the background but below any text */
-    border-radius: inherit; /* Inherit the border radius from the parent box */
+    background-color: rgba(196, 117, 0, 0.5); 
+    z-index: 1; 
+    border-radius: inherit;
 }
 
 /* To ensure any text or content appears above the overlay */
@@ -530,10 +416,10 @@ padding:  0 10px;
     background-image: url(../images/cbd-packaging.png); 
     background-position: center center; 
     background-size: 65%;
-    position: relative; /* Required to position the overlay */
-    overflow: hidden; /* Ensures the overlay stays inside the box */
+    position: relative; 
+    overflow: hidden;
 }
-/* Green overlay */
+/* overlay */
 .five::before {
     content: "";
     position: absolute;
@@ -557,6 +443,7 @@ padding:  0 10px;
 	color : var(--white);
 }
 
+/* TEMPARY SEARCH */
 .temp-search{
 	color: var(--white);
 	font-size: 18px;
