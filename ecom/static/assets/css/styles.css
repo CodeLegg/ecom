@@ -431,6 +431,13 @@ ul.pushNav {
 	cursor: pointer;
 }
 
+.bar {
+	width: 20px;
+	height: 2px;
+	margin: 3px;
+	background-color: var(--offwhite);
+	transition: 0.25s;
+}
 
 
 

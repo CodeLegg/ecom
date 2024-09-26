@@ -4,13 +4,10 @@ from .models import Collection, Product  # Ensure correct import
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-
-
 from django.shortcuts import render, get_object_or_404
 from .models import Collection, Product
+from django.shortcuts import redirect
 
-from django.shortcuts import render, get_object_or_404
-from .models import Collection, Product
 
 def home(request):
     # Fetch the "Stickers, Labels, Design & Print" and "Pre-Made Sticker Shop" collections
@@ -44,10 +41,6 @@ def home(request):
     }
 
     return render(request, 'home.html', context)
-
-
-
-
 
 def wholesale(request):
     return render(request, 'wholesale.html', {})
@@ -121,7 +114,13 @@ def sticker_sub_collections_product_list(request, slug):
     })
 
 
+
 def sticker_collections_product_list(request, slug):
+    # Check if the slug is "pre-made-sticker-shop"
+    if slug == "pre-made-sticker-shop":
+        # Redirect to the "themes" URL for the same slug
+        return redirect('sticker_sub_collections_list', slug=slug)
+
     # Try to get the "Stickers, Labels, Design & Print" collection
     stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
 
@@ -145,6 +144,7 @@ def sticker_collections_product_list(request, slug):
     }
 
     return render(request, 'sticker_collections_product_list.html', context)
+
 
 
 def cbd_collections(request, slug=None):
