@@ -4,10 +4,6 @@ from .models import Collection, Product  # Ensure correct import
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
-from django.shortcuts import render, get_object_or_404
-from .models import Collection, Product
-from django.shortcuts import redirect
-
 
 def home(request):
     # Fetch the "Stickers, Labels, Design & Print" and "Pre-Made Sticker Shop" collections
