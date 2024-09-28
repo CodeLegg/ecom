@@ -45,9 +45,8 @@ def home(request):
 def wholesale(request):
     return render(request, 'wholesale.html', {})
 
-def cbd_section(request):
-    return render(request, 'cbd_section.html', {})
 
+# STICKER COLLECTIONS VIEWS
 
 def sticker_collections(request, slug=None):
     collection = None
@@ -113,8 +112,6 @@ def sticker_sub_collections_product_list(request, slug):
         'products': products
     })
 
-
-
 def sticker_collections_product_list(request, slug):
     # Check if the slug is "pre-made-sticker-shop"
     if slug == "pre-made-sticker-shop":
@@ -145,7 +142,10 @@ def sticker_collections_product_list(request, slug):
 
     return render(request, 'sticker_collections_product_list.html', context)
 
+# CBD COLLECTIONS VIEWS
 
+def cbd_section(request):
+    return render(request, 'cbd_section.html', {})
 
 def cbd_collections(request, slug=None):
     # Check if age is confirmed
@@ -199,11 +199,6 @@ def cbd_collections_product_list(request, slug):
     }
     return render(request, 'cbd_collections_product_list.html', context)
 
-
-def product(request, slug):
-    product = get_object_or_404(Product, slug=slug)
-    return render(request, 'product.html', {'product': product})
-
 @csrf_exempt
 def confirm_age(request):
     if request.method == 'POST':
@@ -212,3 +207,7 @@ def confirm_age(request):
             request.session['age_confirmed'] = True
             return JsonResponse({'success': True})
     return JsonResponse({'success': False}, status=400)
+
+def product(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+    return render(request, 'product.html', {'product': product})
