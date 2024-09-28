@@ -21,17 +21,17 @@ def home(request):
     # Fetch child collections for both parent collections
     sticker_subcollections = Collection.objects.filter(parent=stickers_collection)
     premade_subcollections = Collection.objects.filter(parent=premade_collection)
-    
+
     # Combine the collections
     collections = sticker_subcollections | premade_subcollections
 
     # Slugs of specific products you want to display
     selected_slugs = ['custom-die-cut-stickers', 'colorful-bear', 'the-gay-bear']  # Add your slugs here
 
-    # Filter products by their slugs from both collections and their descendants
+    # Correct the query: Use `in_collections` instead of `product_collections`
     products = Product.objects.filter(
-        product_collections__collection__in=stickers_collection.get_descendants(include_self=True) |
-                                             premade_collection.get_descendants(include_self=True),
+        in_collections__collection__in=stickers_collection.get_descendants(include_self=True) |
+                                      premade_collection.get_descendants(include_self=True),
         slug__in=selected_slugs,
         is_active=True
     ).distinct().order_by('in_collections__order')
@@ -40,10 +40,10 @@ def home(request):
     context = {
         'stickers_collection': stickers_collection,
         'premade_collection': premade_collection,
-        'collections': collections,
         'products': products,
-    }
+                'collections': collections,
 
+    }
     return render(request, 'home.html', context)
 
 def wholesale(request):
