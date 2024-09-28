@@ -43,7 +43,6 @@ class Collection(MPTTModel):
     is_active = models.BooleanField(default=True)
     is_featured = models.BooleanField(default=False)
     order = models.PositiveIntegerField(default=0)
-    products = models.ManyToManyField('Product', related_name='product_collections', blank=True)
     visible_from = models.DateTimeField(blank=True, null=True)
     visible_to = models.DateTimeField(blank=True, null=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -102,7 +101,16 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class ProductCollection(models.Model):
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE, related_name='product_collections')
+    product = models.ForeignKey('Product', on_delete=models.CASCADE, related_name='in_collections')
+    order = models.PositiveIntegerField(default=0)
+    class Meta:
+        ordering = ['order']
+        unique_together = ('collection', 'product')
 
+    def __str__(self):
+        return f"{self.product.name} in {self.collection.name}"
 
 # Customer Orders
 class Order(models.Model):
