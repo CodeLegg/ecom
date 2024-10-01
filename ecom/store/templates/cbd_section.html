@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<main data-age-confirmed="{{ request.session.age_confirmed|default:'false' }}"></main>
+
+  
+<!--
+    - BANNER
+    -->
+    <div class="banner-cbdsection">
+        <div class="container">
+            <div class="slider-container-cbdsection has-scrollbar-cbdsection">
+                <div class="slider-item-cbdsection">
+                    <img src="{% static 'assets/images/stickerneeks-banner-halloween.png' %}" alt="women's latest fashion sale" class="banner-img-cbdsection">
+                    <div class="seasonal-content-cbdsection">
+                        <h2>Pre-made Stickers</h2>
+                        <a href="#" class="seasonal-btn-cbdsection">Shop now</a>
+                    </div>
+                </div>
+                <div class="slider-item-cbdsection">
+                    <img src="{% static 'assets/images/banner-2-neon.jpg' %}" alt="modern sunglasses" class="banner-img-cbdsection">
+                    <div class="banner-content-cbdsection">
+                        <p class="banner-subtitle-cbdsection">Trending accessories</p>
+                        <h2 class="banner-title-cbdsection">Modern sunglasses</h2>
+                        <p class="banner-text-cbdsection">
+                            starting at &dollar; <b>15</b>.00
+                        </p>
+                        <a href="#" class="banner-btn-cbdsection">Shop now</a>
+                    </div>
+                </div>
+                <div class="slider-item-cbdsection">
+                    <img src="{% static 'assets/images/banner-2-neon.jpg' %}" alt="new fashion summer sale" class="banner-img-cbdsection">
+                    <div class="banner-content-cbdsection">
+                        <p class="banner-subtitle-cbdsection">Sale Offer</p>
+                        <h2 class="banner-title-cbdsection">New fashion summer sale</h2>
+                        <p class="banner-text-cbdsection">
+                            starting at &dollar; <b>29</b>.99
+                        </p>
+                        <a href="#" class="banner-btn-cbdsection">Shop now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Featured Grid -->
+    
+    <div class="five-boxes-cbdsection">
+        <div class="boxes-container-cbdsection">
+            <a href="{% url 'sticker_collections_product_list' slug='custom-stickers' %}">
+                <div class="box-cbdsection one-cbdsection">
+                    <h2><strong>Custom Mylars & Stickers</strong></h2>
+                </div>
+            </a>
+            <a href="{% url 'sticker_collections_product_list' slug='custom-labels' %}">
+                <div class="box-cbdsection two-cbdsection">
+                    <h2><strong>Custom Jars & Stickers</strong></h2>
+                </div>
+            </a>
+            <a href="{% url 'product' slug='all-custom-stickers' %}">
+                <div class="box-cbdsection three-cbdsection">
+                    <h2><strong>Pre-Made Strains</strong></h2>
+                </div>
+            </a>
+            <a href="{% url 'sticker_sub_collections_list' slug='pre-made-sticker-shop' %}">
+                <div class="box-cbdsection four-cbdsection">
+                    <h2><strong>All Flower</strong></h2>
+                </div>
+            </a>
+            <a href="{% url 'cbd_section' %}">
+                <div class="box-cbdsection five-cbdsection">
+                    <h2><strong>All Blank Packaging</strong></h2>
+                </div>
+            </a>
+        </div>
+    </div>
+    
+    </main>
+    
+    <div id="age-confirmation-modal" class="modal">
+    <div class="modal-content">
+        <h2>Confirm Your Age</h2>
+        <p>Please enter your date of birth to confirm you are above 18.</p>
+        <form id="age-confirmation-form">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+            <div class="button-wrappers">
+                <button type="submit">Confirm</button>
+                <a href="{% url 'home' %}">Return to Home</a>
+            </div>
+        </form>
+    </div>
+</div> 
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the age confirmation status from the data attribute
+        var ageConfirmed = document.querySelector('main').getAttribute('data-age-confirmed') === 'True';
+        
+        if (!ageConfirmed) {
+            // Show the modal if age is not confirmed
+            var modal = document.getElementById("age-confirmation-modal");
+            modal.style.display = "block";
+        }
+    
+        // Handle form submission
+        document.getElementById("age-confirmation-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var dob = document.getElementById("dob").value;
+            if (dob) {
+                // Calculate age from DOB
+                var today = new Date();
+                var birthDate = new Date(dob);
+                var age = today.getFullYear() - birthDate.getFullYear();
+                var monthDiff = today.getMonth() - birthDate.getMonth();
+                
+                if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+    
+                if (age >= 18) {
+                    // Set session variable via AJAX
+                    fetch("{% url 'confirm_age' %}", {
+                        method: "POST",
+                        headers: {
+                            "X-CSRFToken": "{{ csrf_token }}",
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({ age_confirmed: true })
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Close the modal and allow access
+                            modal.style.display = "none";
+                            window.location.reload();  // Refresh the page after confirmation
+                        }
+                    });
+                } else {
+                    alert("You must be at least 18 years old to access this section.");
+                }
+            }
+        });
+    });
+    </script>
+    
+    
+{% endblock %}

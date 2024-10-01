@@ -138,7 +138,14 @@ def sticker_sub_collections_product_list(request, slug):
 # CBD COLLECTIONS VIEWS
 
 def cbd_section(request):
+    # Check if age is confirmed in the session
+    if not request.session.get('age_confirmed', False):
+        # If age is not confirmed, render the age confirmation modal
+        return render(request, 'cbd_section.html', {'show_age_modal': True})
+    
+    # If age is confirmed, render the CBD section page normally
     return render(request, 'cbd_section.html', {})
+
 
 def cbd_collections(request, slug=None):
     # Check if age is confirmed
