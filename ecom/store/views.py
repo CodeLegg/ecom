@@ -114,9 +114,18 @@ def sticker_collections_product_list(request, slug):
     return render(request, 'sticker_collections_product_list.html', context)
 
 
+from django.shortcuts import render, get_object_or_404, redirect
+
 def sticker_sub_collections_list(request, slug):
+    url_parts = request.path.strip('/').split('/')
+
+    # If the URL has extra segments, remove them and redirect
+    if len(url_parts) > 2:  # "sub-sticker-collections/<slug>/themes/"
+        clean_url = f'/pre-made-sticker-shop/{slug}/'
+        return redirect(clean_url)
+
+    # Fetch the collection by slug
     collection = get_object_or_404(Collection, slug=slug)
-    # Adjust the attribute to 'children' to reflect the model's related_name
     sub_collections = collection.children.all()
 
     return render(request, 'sub_collections_list.html', {
@@ -124,7 +133,16 @@ def sticker_sub_collections_list(request, slug):
         'sub_collections': sub_collections
     })
 
+
 def sticker_sub_collections_product_list(request, slug):
+    url_parts = request.path.strip('/').split('/')
+
+    # If the URL has extra segments, remove them and redirect
+    if len(url_parts) > 2:  # "pre-made-sticker-shop/theme/<slug>/"
+        clean_url = f'/pre-made-sticker-shop/{slug}/'
+        return redirect(clean_url)
+
+    # Fetch the collection by slug
     sub_collection = get_object_or_404(Collection, slug=slug)
     products = get_ordered_products_by_collection(sub_collection)
 
