@@ -5,7 +5,6 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-
 # Helper function to get products by collection and apply the consistent filter logic
 def get_ordered_products_by_collection(collection):
     return Product.objects.filter(
@@ -86,25 +85,26 @@ def sticker_collections(request, slug=None):
     return render(request, 'sticker_collections.html', context)
 
 def sticker_collections_product_list(request, slug):
-    # Check if the slug is "pre-made-sticker-shop"
-    if slug == "pre-made-sticker-shop":
-        # Redirect to the "themes" URL for the same slug
-        return redirect('sticker_sub_collections_list', slug=slug)
-
-    # Try to get the "Stickers, Labels, Design & Print" collection
-    stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
-
-    # Get the collection based on the slug
-    collection = get_object_or_404(Collection, slug=slug)
+    # Check for extra segments in the URL
+    url_parts = request.path.strip('/').split('/')
     
-    # Check if the collection has the correct parent
+    # If there are more than 3 parts in the URL (e.g., "sticker-collections/slug/extra"), redirect to the correct URL
+    if len(url_parts) > 2:
+        return redirect('sticker_collections_product_list', slug=slug)
+
+    # Get the Stickers collection
+    stickers_collection = get_object_or_404(Collection, name="Stickers, Labels, Design & Print")
+    
+    # Fetch the collection by slug
+    collection = get_object_or_404(Collection, slug=slug)
+
+    # Ensure that the collection is a part of "Stickers, Labels, Design & Print"
     if collection.parent != stickers_collection:
         messages.error(request, "That Collection is not part of the 'Stickers, Labels, Design & Print' collection.")
         return redirect('sticker_collections')
-    
-    # Get products from the current collection and all of its sub-collections
-    products = get_ordered_products_by_collection(collection)
 
+    # Fetch products for the current collection
+    products = get_ordered_products_by_collection(collection)
 
     context = {
         'collection': collection,
@@ -138,14 +138,7 @@ def sticker_sub_collections_product_list(request, slug):
 # CBD COLLECTIONS VIEWS
 
 def cbd_section(request):
-    # Check if age is confirmed in the session
-    if not request.session.get('age_confirmed', False):
-        # If age is not confirmed, render the age confirmation modal
-        return render(request, 'cbd_section.html', {'show_age_modal': True})
-    
-    # If age is confirmed, render the CBD section page normally
     return render(request, 'cbd_section.html', {})
-
 
 def cbd_collections(request, slug=None):
     # Check if age is confirmed
@@ -176,24 +169,38 @@ def cbd_collections(request, slug=None):
 
 
 def cbd_collections_product_list(request, slug):
+    # Check for extra segments in the URL
+    url_parts = request.path.strip('/').split('/')
+    
+    # If there are more than 2 parts in the URL (e.g., "cbd-collections/slug/extra"), redirect to the correct URL
+    if len(url_parts) > 2:
+        return redirect('cbd_collections_product_list', slug=slug)
+
     # Check if age is confirmed
     if not request.session.get('age_confirmed', False):
         return render(request, 'cbd_collections.html', {'show_age_modal': True})
 
+    # Fetch the CBD Packaging collection
     cbd_packaging = get_object_or_404(Collection, name="CBD Packaging")
+    
+    # Fetch the collection by slug
     collection = get_object_or_404(Collection, slug=slug)
 
+    # Ensure that the collection is a part of "CBD Packaging"
     if collection.parent != cbd_packaging:
         messages.error(request, "That Collection is not part of the 'CBD Packaging' collection.")
         return redirect('cbd_collections')
 
+    # Fetch products for the current collection
     products = get_ordered_products_by_collection(collection)
-    
+
     context = {
         'collection': collection,
         'products': products,
     }
+
     return render(request, 'cbd_collections_product_list.html', context)
+
 
 @csrf_exempt
 def confirm_age(request):
@@ -205,5 +212,14 @@ def confirm_age(request):
     return JsonResponse({'success': False}, status=400)
 
 def product(request, slug):
+    # Check for extra segments in the URL
+    url_parts = request.path.strip('/').split('/')
+    
+    # If there are more than 2 parts in the URL (e.g., "product/slug/extra"), redirect to the correct URL
+    if len(url_parts) > 2:
+        return redirect('product', slug=slug)
+
+    # Fetch the product by slug
     product = get_object_or_404(Product, slug=slug)
+
     return render(request, 'product.html', {'product': product})
