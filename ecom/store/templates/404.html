@@ -6,13 +6,19 @@
 <!-- content -->
 
 <main>
-
-    <h1>Ooops! (404 Error)</h1>
-    <p>We can't seem to find the page you're looking for.</p>
-    <p><a href="/">Go back to the Homepage</a></p>
-    <p><a href="/">Go back to the CBD Homepage</a></p>
+<div class="">
     
-<br>
+        <div class="error-titles">
+            <h2>Ooops! (404 Error)</h2>
+        </div>
+                <div class="error-content">
+                    <h3>We can't seem to find the page you're looking for.</h>
+                    
+                            <p><a href="{% url 'home'%}">Go back to the Homepage</a></p>
+                            <p><a href="{% url 'cbd_section'%}">Go back to the CBD Homepage</a></p>
+                </div>
+    
+</div>
 <br>
 <br>
 <br>

@@ -660,6 +660,19 @@ footer {
 	background-color: #45a049; /* Darker green */
 }
 
+/* 404 error page */
+
+.error-titles h2{
+font-size: 35px;
+text-align: center;
+padding: 20px 10px 0;
+}
+
+.error-content{text-align: center;
+font-size: 16px;
+max-width: 350px;
+margin: 0 auto;}
+
 /* Style for mobile responsiveness */
 @media screen and (max-width: 768px) {
 	.modal-content {
