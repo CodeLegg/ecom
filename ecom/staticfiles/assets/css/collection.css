@@ -1,0 +1,289 @@
+/*----------------------*\
+        # STYLES.CSS  
+\*----------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+	/**
+         * colors
+         */
+
+	--platinum: hsl(0, 0%, 90%);
+	--black_70: hsla(0, 0%, 0%, 0.7);
+	--white: hsl(0, 0%, 100%);
+	--black: hsl(0, 0%, 0%);
+
+	--navbar: hsl(0, 0%, 10%);
+    --navbar-sidekick2: hsl(88, 69%, 64%); /* Original color */
+    --navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
+    --navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
+    --text-green: #228B22; /* High-contrast green */
+
+	--offwhite: hsl(35, 100%, 98%);
+	--darkgrey: hsl(0, 0%, 35%);
+	--lightgrey: hsl(0, 0%, 87%);
+
+	/**
+         * typography
+         */
+
+	--ff-source-sans-pro: "Source Sans Pro", sans-serif;
+	--ff-poppins: "Poppins", sans-serif;
+
+	--fs-1: 1.563rem;
+	--fs-2: 1.375rem;
+	--fs-3: 1.25rem;
+	--fs-4: 1.125rem;
+	--fs-5: 1rem;
+	--fs-6: 0.938rem;
+	--fs-7: 0.875rem;
+	--fs-8: 0.813rem;
+	--fs-9: 0.75rem;
+	--fs-10: 0.688rem;
+	--fs-11: 0.625rem;
+
+	--weight-300: 300;
+	--weight-400: 400;
+	--weight-500: 500;
+	--weight-600: 600;
+	--weight-700: 700;
+
+	/**
+         * border radius
+         */
+
+	--radius-4: 4px;
+	--radius-12: 12px;
+
+	/**
+         * spacing
+         */
+
+	--section-padding: 60px;
+
+
+    /* padding */
+
+    --splatter-padding-collection-grid: 10px 10px 100px 10px;
+
+	/**
+         * transition
+         */
+
+	--transition-1: 0.15s ease;
+	--transition-2: 0.35s ease;
+	--cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+	--cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1);
+
+	/**
+         * shadow
+         */
+
+	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
+
+
+}
+
+/*-----------------------------------*\
+  #COLLECTION STYLES
+\*-----------------------------------*/
+
+
+
+
+.collection-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+	gap: 20px;
+	padding: var(--splatter-padding-collection-grid);
+	justify-items: center;  /* Centers grid items horizontally */
+	align-items: center;    /* Centers grid items vertically */
+}
+
+.collection-image {
+	width: 100%;
+	margin: 0 auto;
+    border-radius: 8px 8px 0 0;
+
+}
+.collection-detail-image {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.collection-card {
+    position: relative;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	background-color: #fff;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;  /* Center content horizontally within the card */
+	justify-content: center;  /* Center content vertically within the card */
+}
+
+.collection-title{
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: var(--black);
+	text-align: center;
+	padding: 20px 10px 0px;
+}
+.collection-message {
+    font-size: 16px;
+    color: var(--black);
+    text-align: center;
+    max-width: 350px; /* Adjust to control paragraph width */
+    margin: 0 auto; /* Center the paragraph */
+}
+
+.collection-message a {
+    display: inline; /* Keep links inline with text */
+    white-space: normal; /* Ensure normal text wrapping */
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline */
+}
+.collection-message a:focus,
+.collection-message a:hover,
+.collection-message a:active {
+    color: var(--navbar-sidekick2); /* Hover color */
+}
+
+
+/*-----------------------------------*\
+  #COLLECTION PRODUCT STYLES
+\*-----------------------------------*/
+
+.collection-product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1rem;
+    padding: var(--splatter-padding-collection-grid);
+    align-items: center;    /* Centers grid items vertically */
+}
+
+.collection-product-card {
+	position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--white);
+    position: relative;
+    transition: box-shadow 0.3s ease;
+}
+
+.collection-product-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Shadow on hover */
+}
+
+.collection-detail-product-image-wrapper {
+    position: relative;
+    width: 155px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    overflow: hidden; /* Hide overflow */
+}
+
+.details-button {
+    position: absolute; /* Position the button absolutely within the image container */
+    top: 50%; /* Position vertically centered */
+    left: 50%; /* Position horizontally centered */
+    transform: translate(-50%, -50%); /* Center both vertically and horizontally */
+    background-color: var(--navbar-sidekick2); /* Button background color */
+    color: var(--navbar); /* Button text color */
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    font-size: 1rem; /* Font size */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.4s ease; /* Smooth transition */
+    z-index: 20; /* Ensure button is on top of overlay */
+    width: 75%; /* Adjust width as needed */
+    text-align: center; /* Center text within button */
+	font-weight: 700; /* Bold text */
+	text-transform: uppercase ;
+}
+
+.collection-detail-product-image {
+    width: 100%; /* Make the image fit the container */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove bottom space */
+}
+
+.product-card-overlay {
+    position: absolute; /* Overlay will be positioned absolutely within the image container */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(255, 255, 255, 0.373); /* Dark semi-transparent background */
+    color: white; /* Text color */
+    display: flex; /* Flexbox for centering */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s ease; /* Smooth transition */
+	z-index: 10; /* Ensure overlay is behind button */
+}
+
+.collection-product-card:hover .product-card-overlay {
+    opacity: 1;
+}
+
+.collection-product-card:hover .details-button {
+    opacity: 1;
+}
+
+
+
+.details-button:hover {
+    background-color: var(--navbar-sidekick-intermediate); /* Darker button color on hover */
+}
+
+.collection-text {
+    padding: 0 30px; /* Add some padding */
+    flex: 1; /* Allow text to take up the remaining space */
+    display: flex; /* Ensure text content aligns correctly */
+    flex-direction: column; /* Stack text elements vertically */
+    justify-content: center; /* Center text vertically */
+	align-items: center; /* Center text horizontally */
+	text-align: center; /* Center text within the card */
+}
+
+.collection-text p{
+	color: var(--navbar-sidekick3);
+	font-weight: 700;
+    margin: 4px 0; /* Adjust spacing between paragraphs */
+}
+.collection-text .sticker-collection-description{
+	color: var(--navbar-sidekick3);
+	font-weight: 700;
+    margin: 4px 0; /* Adjust spacing between paragraphs */
+    font-size: 13px;
+}
+.collection-text h2 {
+    margin: 0;
+    font-size: 1.5rem; /* Adjust font size if needed */
+}
+
+.collection-text small {
+    display: block;
+    margin-top: 5px; /* Space above small text */
+}
+
+
+
+

@@ -1,0 +1,450 @@
+/*----------------------*\
+        # STYLES.CSS  
+\*----------------------*/
+
+@import url("https://fonts.googleapis.com/css2?family=Paytone+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+	/**
+         * colors
+         */
+
+	--platinum: hsl(0, 0%, 90%);
+	--black_70: hsla(0, 0%, 0%, 0.7);
+	--white: hsl(0, 0%, 100%);
+	--black: hsl(0, 0%, 0%);
+
+	--navbar: hsl(0, 0%, 10%);
+	--navbar-sidekick2: hsl(88, 69%, 64%); /* Original color */
+	--navbar-sidekick-intermediate: hsl(88, 69%, 40%); /* Intermediate color */
+	--navbar-sidekick3: hsl(88, 69%, 30%); /* Slightly darker shade for hover */
+	--text-green: #228b22; /* High-contrast green */
+	--offwhite: hsl(35, 100%, 98%);
+	--darkgrey: hsl(0, 0%, 92%);
+	--lightgrey: hsl(0, 0%, 87%);
+
+	/**
+         * typography
+         */
+
+	--ff-source-sans-pro: "Source Sans Pro", sans-serif;
+	--ff-poppins: "Poppins", sans-serif;
+
+	--fs-1: 1.563rem;
+	--fs-2: 1.375rem;
+	--fs-3: 1.25rem;
+	--fs-4: 1.125rem;
+	--fs-5: 1rem;
+	--fs-6: 0.938rem;
+	--fs-7: 0.875rem;
+	--fs-8: 0.813rem;
+	--fs-9: 0.75rem;
+	--fs-10: 0.688rem;
+	--fs-11: 0.625rem;
+
+	--weight-300: 300;
+	--weight-400: 400;
+	--weight-500: 500;
+	--weight-600: 600;
+	--weight-700: 700;
+
+	/**
+         * border radius
+         */
+
+	--radius-4: 4px;
+	--radius-12: 12px;
+
+	/**
+         * spacing
+         */
+
+	--section-padding: 60px;
+
+	/**
+         * transition
+         */
+
+	--transition-1: 0.15s ease;
+	--transition-2: 0.35s ease;
+	--cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+	--cubic-out: cubic-bezier(0.33, 0.85, 0.56, 1);
+
+	/**
+         * shadow
+         */
+
+	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
+	--shadow-light: 0px 2px 8px 0px rgba(99, 99, 99, 0.5);
+
+
+	/**
+   * border-radius
+   */
+
+	--border-radius-md: 10px;
+	--border-radius-sm: 5px;
+}
+
+
+/*-----------------------------------*\
+  #BANNER
+\*-----------------------------------*/
+
+.banner {
+	margin:20px 0 10px 0;
+}
+
+.slider-container {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-radius: var(--border-radius-md);
+	overflow: auto hidden;
+	scroll-snap-type: inline mandatory;
+	overscroll-behavior-inline: contain;
+}
+
+.slider-item {
+	position: relative;
+	min-width: 100%;
+	max-height: 450px;
+	aspect-ratio: 1 / 1;
+	border-radius: var(--border-radius-md);
+	overflow: hidden;
+	scroll-snap-align: start;
+}
+
+.slider-item .banner-img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: right;
+}
+
+/*-----------------------------------*\
+  #BANNER 1
+\*-----------------------------------*/
+
+.seasonal-content {
+	width: 100%;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: var(--border-radius-md);
+	text-align: center;
+	margin-block: 5px;
+}
+.seasonal-content h2 {
+	color: var(--white);
+	font-size: 20px;
+	text-transform: uppercase;
+	line-height: 1;
+	margin-block: 5px;
+	font-weight: 900;
+	text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes flash-colors {
+	0% {
+		background-color: red; /* Red */
+	}
+	10% {
+		background-color: orange; /* Orange */
+	}
+	20% {
+		background-color: goldenrod; /* Yellow */
+	}
+	30% {
+		background-color: green; /* Green */
+	}
+	40% {
+		background-color: blue; /* Blue */
+	}
+	50% {
+		background-color: indigo; /* Indigo */
+	}
+	60% {
+		background-color: violet; /* Violet */
+	}
+	70% {
+		background-color: #FF69B4; /* Pink */
+	}
+	80% {
+		background-color: orchid; /* Cyan */
+	}
+	90% {
+		background-color: salmon; /* Lime */
+	}
+	100% {
+		background-color: red; /* Loop back to Red */
+	}
+}
+
+.seasonal-btn {
+	background: red; 
+	color: var(--white);
+	width: max-content;
+	font-size: 15px;
+	font-weight: 700;
+	text-transform: uppercase;
+	padding: 4px 10px;
+	border-radius: var(--border-radius-sm);
+	transition: var(--transition-timing);
+	margin: 0 auto;
+	animation: flash-colors 5s infinite; /* 5-second rainbow transition */
+}
+
+/* rest of banner content */
+
+.banner-content {
+	background: hsla(0, 0%, 100%, 0.8);
+	position: absolute;
+	bottom: 25px;
+	left: 25px;
+	right: 25px;
+	padding: 20px 25px;
+	border-radius: var(--border-radius-md);
+}
+
+.banner-subtitle {
+	color: var(--salmon-pink);
+	font-size: var(--fs-7);
+	font-weight: var(--weight-500);
+	text-transform: capitalize;
+	letter-spacing: 2px;
+	margin-bottom: 10px;
+}
+
+.banner-title {
+	color: var(--eerie-black);
+	font-size: var(--fs-1);
+	text-transform: uppercase;
+	line-height: 1;
+	margin-bottom: 10px;
+}
+
+.banner-text {
+	display: none;
+}
+
+.banner-btn {
+	background: var(--navbar-sidekick2);
+	color: var(--navbar);
+	width: max-content;
+	font-size: var(--fs-11);
+	font-weight: var(--weight-600);
+	text-transform: uppercase;
+	padding: 4px 10px;
+	border-radius: var(--border-radius-sm);
+	transition: var(--transition-timing);
+}
+
+.banner-btn:hover {
+	background: var(--eerie-black);
+}
+  
+/*-----------------------------------*\
+  #HAS-SCROLLBAR
+\*-----------------------------------*/
+
+.has-scrollbar{
+	padding-bottom: 5px;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+	width: 4px; 
+	height: 4px; 
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--lightgrey);
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--navbar-sidekick-intermediate);
+	border-radius: 10px;
+	width: 5px;
+	height: 5px; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: hsl(0, 0%, 70%);
+}
+
+
+/*-----------------------------------*\
+  #BOXES
+\*-----------------------------------*/
+
+.boxes-container{
+padding:  0 10px;	
+}
+
+.box {
+	background: var(--black_70);
+	padding: 20px;
+	margin-bottom: 20px;
+	border-radius: var(--border-radius-md);
+	box-shadow: var(--shadow-light)
+}
+
+/* Select the 2nd, 3rd, 4th, and 5th child and change their background */
+.one{
+	background-image: url(../images/custom-stickers.webp); /* Replace with the desired background image */
+	background-position: center center; /* Adjust as needed */
+	background-size: 80%;
+	position: relative; /* Required to position the overlay */
+    overflow: hidden; /* Ensures the overlay stays inside the box */
+}
+
+/* Green overlay */
+.one::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(163, 0, 133, 0.5); /* Green overlay with 50% opacity */
+    z-index: 1; /* Ensures the overlay is above the background but below any text */
+    border-radius: inherit; /* Inherit the border radius from the parent box */
+}
+
+/* To ensure any text or content appears above the overlay */
+.one > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* box 2 */
+.two{
+	background-image: url(../images/custom-labels.webp); 
+	background-position: center center; 
+	background-size: 80%;
+	position: relative; 
+    overflow: hidden; 
+}
+
+/* overlay */
+.two::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 125, 125, 0.5); 
+    z-index: 1;
+    border-radius: inherit; 
+}
+
+/* To ensure any text or content appears above the overlay */
+.two > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* box 3 */
+.three{
+	background-image: url(../images/banner-1-neon.jpg); 
+	background-position: center center; 
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: relative; 
+    overflow: hidden; 
+}
+
+/* overlay */
+.three::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 62, 128, 0.5); 
+    z-index: 1; 
+    border-radius: inherit; 
+}
+
+/* To ensure any text or content appears above the overlay */
+.three > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* box 4 */
+.four{
+	background-image: url(../images/stickershop.webp); 
+	background-position: center; 
+	background-size: 100%;
+	background-repeat: no-repeat;
+	position: relative; 
+    overflow: hidden; 
+}
+
+/* overlay */
+.four::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(196, 117, 0, 0.5); 
+    z-index: 1; 
+    border-radius: inherit;
+}
+
+/* To ensure any text or content appears above the overlay */
+.four > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* BOX CBD PACKAGING TILE*/
+
+.five {
+    background-image: url(../images/cbd-packaging.png); 
+    background-position: center center; 
+    background-size: 65%;
+    position: relative; 
+    overflow: hidden;
+}
+/* overlay */
+.five::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 128, 0, 0.5); 
+    z-index: 1; 
+    border-radius: inherit; 
+}
+
+/* To ensure any text or content appears above the overlay */
+.five > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* BOX TEXT */
+.box h2{
+	color : var(--white);
+}
+
+/* TEMPARY SEARCH */
+.temp-search{
+	color: var(--white);
+	font-size: 18px;
+}

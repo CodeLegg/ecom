@@ -33,5 +33,6 @@ urlpatterns = [
         re_path(r'^pre-made-sticker-shop/(?P<slug>[\w-]+)/.*$', views.sticker_sub_collections_product_list, name='sticker_sub_collections_extra'),
 
     path('confirm-age/', views.confirm_age, name='confirm_age'),
+    
 ]
 
