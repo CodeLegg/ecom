@@ -284,6 +284,7 @@ ul.pushNav {
 	transition: background 0.4s ease-in-out;
 	padding-left: 23px;
 	padding-right: 30px;
+	/* UNUSED BORDER */
 	/* border-bottom: 1px solid rgba(255, 255, 255, 0.551); */
 }
 
@@ -326,7 +327,7 @@ ul.pushNav {
 	opacity: 0.9; /* Slight transparency on hover */
   }
   
-
+/* UNUSED BORDER */
 .home-border {
 	/* border-top: 1px solid rgba(255, 255, 255, 0.551); */
 }
