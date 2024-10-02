@@ -28,7 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'ecom.store',
+    'store',
     'mptt',
     'django_mptt_admin',
 ]
@@ -63,7 +63,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'ecom.ecom.wsgi.application'
+WSGI_APPLICATION = 'ecom.wsgi.application'
 
 
 # Database
