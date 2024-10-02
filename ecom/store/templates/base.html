@@ -50,7 +50,7 @@
 
         <!-- mobile menu  -->
         <nav class="bottom-header">
-
+      
             <div class="container">
                 <nav>
                     <!-- Unordered List -->
@@ -66,8 +66,29 @@
                             </button>
                         </div>
 
+                        <div class="nav-auth-container">
+                            {% if user.is_authenticated %}
+                                <!-- If the user is logged in, show "My Profile" and "Sign Out" -->
+                                <div class="nav-auth-btn signup">
+                                    <a href="/profile">My Profile</a> <!-- Link to the user's profile -->
+                                </div>
+                                <div class="nav-auth-btn signin">
+                                    <a class="sign-in" href="{% url 'logout' %}">Sign Out</a> <!-- Link to log out -->
+                                </div>
+                            {% else %}
+                                <!-- If the user is not logged in, show "Sign Up" and "Sign In" -->
+                                <div class="nav-auth-btn signup">
+                                    <a href="{% url 'register' %}">Sign Up</a> <!-- Link to sign up -->
+                                </div>
+                                <div class="nav-auth-btn signin">
+                                    <a class="sign-in" href="{% url 'login' %}">Sign In</a> <!-- Link to log in -->
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                            
                         <!-- List Item Link -->
-                        <li>
+                        <li class="home-border">
                             <a href="{% url 'home'%}">
                                 Home
                                 <div class=""></div>
@@ -921,7 +942,21 @@
         </nav>
 
     </header>
-
+     
+    <!-- Messages block -->
+     <div id="messages">
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li class="message {{ message.tags }}">
+                        <span class="message-text">{{ message }}</span>
+                        <span class="close-btn-messages" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    
     <!-- main content -->
     {% block content %}
 
@@ -933,28 +968,36 @@
 
 
 
-        <button class="action-btn active">
+        <a href="{% url 'home'%}" class="action-btn active">
             <i class="fa-solid fa-house"></i>
             <p>Home</p>
-        </button>
+        </a>
 
-        <button class="action-btn">
+        {% if user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="action-btn">
+            <i class="fa-sharp fa-solid fa-user"></i>
+            <p>Sign-out</p>
+        </a>
+    {% else %}
+        <a href="{% url 'login' %}" class="action-btn">
             <i class="fa-sharp fa-solid fa-user"></i>
             <p>Sign-in</p>
-        </button>
+        </a>
+    {% endif %}
+    
 
 
-        <button class="action-btn">
+        <a href="" class="action-btn">
             <i class="fa-solid fa-heart"></i>
             <p>Wishlist</p>
             <span class="count">0</span>
-        </button>
+        </a>
 
-        <button class="action-btn">
+        <a href="" class="action-btn">
             <i class="fa-sharp fa-solid fa-cart-shopping"></i>
             <span class="count">0</span>
             <p>Cart</p>
-        </button>
+        </a>
 
     </div>
 

@@ -1,4 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from django import forms
+from .forms import SignUpForm
 from django.contrib import messages
 from .models import Collection, Product  # Ensure correct import
 from django.http import JsonResponse
@@ -242,3 +247,42 @@ def product(request, slug):
 
     return render(request, 'product.html', {'product': product})
 
+# LOGIN & OUT VIEWS
+
+def login_user(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(request, email=email, password=password)  # Use email for authentication
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You've been logged in.")
+            return redirect('home')
+        else:
+            messages.error(request, "Invalid email or password.")
+            return redirect('login')
+    else:
+        return render(request, 'login.html', {})
+
+def logout_user(request):
+    logout(request)
+    messages.success(request, "You've been logged out.")
+    return redirect('home')
+
+def register_user(request):
+    form = SignUpForm()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password1')
+            user = authenticate(request, email=email, password=password)
+            login(request, user)
+            messages.success(request, "Your account has been created.")
+            return redirect('home')
+        else:
+            messages.error(request, "An error occurred during registration.")
+            return redirect('register')
+    else:
+        return render(request, 'register.html', {'form': form})

@@ -8,6 +8,13 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('wholesale/', views.wholesale, name='wholesale'),
     path('cbd-section/', views.cbd_section, name='cbd_section'),
+    
+    
+    
+    path('login/', views.login_user, name='login'),
+    path('logout/', views.logout_user, name='logout'),
+    path('register/', views.register_user, name='register'),
+    
     path('product/<slug:slug>', views.product, name='product'),
         re_path(r'^product/(?P<slug>[\w-]+)/.*$', views.product, name='product_extra'),
 

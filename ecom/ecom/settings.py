@@ -10,13 +10,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-4ej6jn@x=^d#g8c8y+$+32$l)yi393-(36&+@@t0ue6j6t6^bh'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-4ej6jn@x=^d#g8c8y+$+32$l)yi393-(36&+@@t0ue6j6t6^bh')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['ecom.onrender.com', 'localhost', '127.0.0.1']
-
 
 
 # Application definition
@@ -28,9 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store',
-    'mptt',
-    'django_mptt_admin',
+    'store',  # Your custom app
+    'mptt',  # For hierarchical category management
+    'django_mptt_admin',  # Admin integration for MPTT
 ]
 
 MIDDLEWARE = [
@@ -41,9 +40,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files in production
 ]
+
+
+AUTHENTICATION_BACKENDS = [
+    'store.authentication_backends.EmailBackend',  # Your custom email backend
+    'django.contrib.auth.backends.ModelBackend',  # Default backend (for username login)
+]
+
 
 ROOT_URLCONF = 'ecom.urls'
 
@@ -70,13 +75,10 @@ WSGI_APPLICATION = 'ecom.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    #    this is a new line added for render
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
-
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL', 'sqlite:///db.sqlite3'),
+        conn_max_age=600,  # Optimize database connections
+    )
 }
 
 
@@ -114,18 +116,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# URL to access static files
 STATIC_URL = '/static/'
 
-# Directory where static files are stored (during development)
+# Directory where static files are stored during development
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Ensure this points to the correct folder
+    BASE_DIR / "static",  # Make sure this directory exists and contains static files
 ]
 
-# Directory where static files are collected for production (if using collectstatic)
+# Directory where static files are collected for production
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-# Media files (uploads)
+# WhiteNoise settings (to serve static files in production)
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files (for user uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
