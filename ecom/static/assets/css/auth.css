@@ -188,6 +188,18 @@ text-align: center;
     font-size: 14px;
     transition: background-color 0.3s ease;
 }
+.social-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	padding: 12px 24px; /* Add padding to make buttons larger */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
 
 .social-buttons button img {
     margin-right: 10px;

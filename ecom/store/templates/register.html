@@ -12,10 +12,10 @@
     
     <!-- Social Sign-in Buttons -->
     <div class="social-buttons">
-        <button type="button" class="btn-google">
-            <i class="fa-brands fa-google social-icon-spacer"></i>
-            <p>Continue with Google</p>
-        </button>
+        {% load socialaccount %}
+        <a href="{% provider_login_url 'google' %}" class="btn-google">
+            <i class="fa-brands fa-google social-icon-spacer"></i> Continue with Google
+        </a>
         <button type="button" class="btn-apple">
             <i class="fa-brands fa-apple social-icon-spacer"></i>
             <p>Continue with Apple</p>
@@ -24,6 +24,10 @@
             <i class="fa-brands fa-facebook social-icon-spacer"></i>
             <p>Continue with Facebook</p>
         </button>    
+        <button type="button" class="btn-facebook">
+            <i class="fa-regular fa-envelope social-icon-spacer"></i>
+            <p>Continue with Email</p>
+        </button>    
         
         <!-- Separator for Social Sign-in Options -->
     <div class="separator">
@@ -31,87 +35,86 @@
     </div>
 
     </div>
+        
+    <div class="">
         <!-- Username Field -->
-        <div class="form-group">
-            {{ form.username.label_tag }} <!-- Label for the username field -->
-            {{ form.username }} <!-- Input for the username field -->
-            <div class="text-danger">
-                {{ form.username.errors }} <!-- Show errors for username -->
+            <div class="form-group">
+                {{ form.username.label_tag }} <!-- Label for the username field -->
+                {{ form.username }} <!-- Input for the username field -->
+                <div class="text-danger">
+                    {{ form.username.errors }} <!-- Show errors for username -->
+                </div>
+                <small id="id_usernameHelp" class="form-text text-muted">
+                    {{ form.username.help_text }}
+                </small> <!-- Help text for username -->
             </div>
-            <small id="id_usernameHelp" class="form-text text-muted">
-                {{ form.username.help_text }}
-            </small> <!-- Help text for username -->
-        </div>
-    
-        <!-- First Name Field -->
-        <div class="form-group">
-            {{ form.first_name.label_tag }} <!-- Label for the first name field -->
-            {{ form.first_name }} <!-- Input for the first name field -->
-            <div class="text-danger">
-                {{ form.first_name.errors }} <!-- Show errors for first name -->
+        
+            <!-- First Name Field -->
+            <div class="form-group">
+                {{ form.first_name.label_tag }} <!-- Label for the first name field -->
+                {{ form.first_name }} <!-- Input for the first name field -->
+                <div class="text-danger">
+                    {{ form.first_name.errors }} <!-- Show errors for first name -->
+                </div>
+                <small id="id_first_nameHelp" class="form-text text-muted" style="display:none;">
+                    {{ form.first_name.help_text }}
+                </small> <!-- Help text for first name -->
             </div>
-            <small id="id_first_nameHelp" class="form-text text-muted" style="display:none;">
-                {{ form.first_name.help_text }}
-            </small> <!-- Help text for first name -->
-        </div>
-    
-        <!-- Last Name Field -->
-        <div class="form-group">
-            {{ form.last_name.label_tag }} <!-- Label for the last name field -->
-            {{ form.last_name }} <!-- Input for the last name field -->
-            <div class="text-danger">
-                {{ form.last_name.errors }} <!-- Show errors for last name -->
+        
+            <!-- Last Name Field -->
+            <div class="form-group">
+                {{ form.last_name.label_tag }} <!-- Label for the last name field -->
+                {{ form.last_name }} <!-- Input for the last name field -->
+                <div class="text-danger">
+                    {{ form.last_name.errors }} <!-- Show errors for last name -->
+                </div>
+                <small id="id_last_nameHelp" class="form-text text-muted" style="display:none;">
+                    {{ form.last_name.help_text }}
+                </small> <!-- Help text for last name -->
             </div>
-            <small id="id_last_nameHelp" class="form-text text-muted" style="display:none;">
-                {{ form.last_name.help_text }}
-            </small> <!-- Help text for last name -->
-        </div>
-    
-        <!-- Email Field -->
-        <div class="form-group">
-            {{ form.email.label_tag }} <!-- Label for the email field -->
-            {{ form.email }} <!-- Input for the email field -->
-            <div class="text-danger">
-                {{ form.email.errors }} <!-- Show errors for email -->
+        
+            <!-- Email Field -->
+            <div class="form-group">
+                {{ form.email.label_tag }} <!-- Label for the email field -->
+                {{ form.email }} <!-- Input for the email field -->
+                <div class="text-danger">
+                    {{ form.email.errors }} <!-- Show errors for email -->
+                </div>
+                <small id="id_emailHelp" class="form-text text-muted" style="display:none;">
+                    {{ form.email.help_text }}
+                </small> <!-- Help text for email -->
             </div>
-            <small id="id_emailHelp" class="form-text text-muted" style="display:none;">
-                {{ form.email.help_text }}
-            </small> <!-- Help text for email -->
-        </div>
-    
-        <!-- Password1 Field -->
-        <div class="form-group">
-            {{ form.password1.label_tag }} <!-- Label for the password field -->
-            {{ form.password1 }} <!-- Input for the password field -->
-            <div class="text-danger">
-                {{ form.password1.errors }} <!-- Show errors for password1 -->
+        
+            <!-- Password1 Field -->
+            <div class="form-group">
+                {{ form.password1.label_tag }} <!-- Label for the password field -->
+                {{ form.password1 }} <!-- Input for the password field -->
+                <div class="text-danger">
+                    {{ form.password1.errors }} <!-- Show errors for password1 -->
+                </div>
+                <small id="id_password1Help" class="form-text text-muted" style="display:none;">
+                    {{ form.password1.help_text }}
+                </small> <!-- Help text for password1 -->
             </div>
-            <small id="id_password1Help" class="form-text text-muted" style="display:none;">
-                {{ form.password1.help_text }}
-            </small> <!-- Help text for password1 -->
-        </div>
-    
-        <!-- Password2 Field -->
-        <div class="form-group">
-            {{ form.password2.label_tag }} <!-- Label for the password confirmation field -->
-            {{ form.password2 }} <!-- Input for the password confirmation field -->
-            <div class="text-danger">
-                {{ form.password2.errors }} <!-- Show errors for password2 -->
+        
+            <!-- Password2 Field -->
+            <div class="form-group">
+                {{ form.password2.label_tag }} <!-- Label for the password confirmation field -->
+                {{ form.password2 }} <!-- Input for the password confirmation field -->
+                <div class="text-danger">
+                    {{ form.password2.errors }} <!-- Show errors for password2 -->
+                </div>
+                <small id="id_password2Help" class="form-text text-muted" style="display:none;">
+                    {{ form.password2.help_text }}
+                </small> <!-- Help text for password2 -->
             </div>
-            <small id="id_password2Help" class="form-text text-muted" style="display:none;">
-                {{ form.password2.help_text }}
-            </small> <!-- Help text for password2 -->
-        </div>
-    
-        <!-- Register Button -->
-        <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
-    </form>
-
-
-
-    <!-- Link to login page -->
-    <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
-    
+        
+            <!-- Register Button -->
+            <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
+        <!-- Link to login page -->
+        <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
+    </div>
+     </form>
 </main>
 
 <script>
