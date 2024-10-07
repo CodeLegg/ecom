@@ -6,10 +6,31 @@
 <!-- content -->
 
 <main>
-<h2 class="auth-title">Create Your Account</h2>
+    <h2 class="auth-title">Create Your Account</h2>
     <form method="POST" action="{% url 'register' %}" class="login-form"> <!-- Add class="login-form" to match the login form -->
         {% csrf_token %}
     
+    <!-- Social Sign-in Buttons -->
+    <div class="social-buttons">
+        <button type="button" class="btn-google">
+            <i class="fa-brands fa-google social-icon-spacer"></i>
+            <p>Continue with Google</p>
+        </button>
+        <button type="button" class="btn-apple">
+            <i class="fa-brands fa-apple social-icon-spacer"></i>
+            <p>Continue with Apple</p>
+        </button>
+        <button type="button" class="btn-facebook">
+            <i class="fa-brands fa-facebook social-icon-spacer"></i>
+            <p>Continue with Facebook</p>
+        </button>    
+        
+        <!-- Separator for Social Sign-in Options -->
+    <div class="separator">
+        <span>or sign up with</span>
+    </div>
+
+    </div>
         <!-- Username Field -->
         <div class="form-group">
             {{ form.username.label_tag }} <!-- Label for the username field -->
@@ -17,7 +38,7 @@
             <div class="text-danger">
                 {{ form.username.errors }} <!-- Show errors for username -->
             </div>
-            <small id="id_usernameHelp" class="form-text text-muted" style="display:none;">
+            <small id="id_usernameHelp" class="form-text text-muted">
                 {{ form.username.help_text }}
             </small> <!-- Help text for username -->
         </div>
@@ -86,31 +107,43 @@
         <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
     </form>
 
+
+
     <!-- Link to login page -->
     <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
     
 </main>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {
     const inputs = document.querySelectorAll('input'); // Select all inputs
-    
+    const firstInput = inputs[0]; // Select the first input
+    const firstInputHelp = document.getElementById(firstInput.id + 'Help'); // Get the first input's help text
+
+    // Show the first input's help text when the page loads
+    if (firstInputHelp) {
+        firstInputHelp.style.display = 'block';
+    }
+
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
-            const helpText = document.getElementById(this.id + 'Help'); // Match input ID with corresponding Help text ID
-            if (helpText) {
-                helpText.style.display = 'block'; // Show help text on focus
-            }
-        });
-        
-        input.addEventListener('blur', function() {
-            const helpText = document.getElementById(this.id + 'Help'); // Match input ID with corresponding Help text ID
-            if (helpText) {
-                helpText.style.display = 'none'; // Hide help text on blur
+            // Hide all help texts
+            inputs.forEach(inputField => {
+                const helpText = document.getElementById(inputField.id + 'Help');
+                if (helpText) {
+                    helpText.style.display = 'none'; // Hide all help texts
+                }
+            });
+
+            // Show the help text for the currently focused input
+            const currentHelpText = document.getElementById(this.id + 'Help');
+            if (currentHelpText) {
+                currentHelpText.style.display = 'block';
             }
         });
     });
 });
 
 </script>
+
 {% endblock %}
