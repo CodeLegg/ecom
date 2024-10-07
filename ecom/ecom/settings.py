@@ -30,7 +30,18 @@ INSTALLED_APPS = [
     'store',  # Your custom app
     'mptt',  # For hierarchical category management
     'django_mptt_admin',  # Admin integration for MPTT
+      # Required for django-allauth
+    'django.contrib.sites',  # Needed by django-allauth
+    
+    # django-allauth apps
+    'allauth',
+    'allauth.account',  # For regular auth (sign up, login)
+    'allauth.socialaccount',  # For social authentication (Google, Facebook, etc.)
+    
+    # Add providers you need (e.g., Google, Facebook)
+    'allauth.socialaccount.providers.google',
 ]
+SITE_ID = 2
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -41,14 +52,23 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # For serving static files in production
+    'allauth.account.middleware.AccountMiddleware',  # This is needed for allauth
+
 ]
 
 
 AUTHENTICATION_BACKENDS = [
     'store.authentication_backends.EmailBackend',  # Your custom email backend
     'django.contrib.auth.backends.ModelBackend',  # Default backend (for username login)
+    'allauth.account.auth_backends.AuthenticationBackend',  # Allauth backend
+
 ]
 
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ROOT_URLCONF = 'ecom.urls'
 

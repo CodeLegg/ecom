@@ -24,10 +24,12 @@
         </div>
 
         <div class="social-buttons">
-            <button type="button" class="btn-google">
-                <i class="fa-brands fa-google social-icon-spacer"></i> 
-                <p>Continue with Google</p>
-            </button>
+            {% load socialaccount %}
+            <a href="{% provider_login_url 'google' %}" class="btn-google">
+                <i class="fa-brands fa-google"></i> Continue with Google
+            </a>
+            
+            
             <button type="button" class="btn-apple">
                 <i class="fa-brands fa-apple social-icon-spacer"></i>
                 <p>Continue with Apple</p>
