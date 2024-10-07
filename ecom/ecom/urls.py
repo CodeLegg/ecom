@@ -4,7 +4,9 @@ from . import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('store.urls')),
-    path('accounts/', include('allauth.urls')),  # Allauth URLs for login, logout, registration
+    path("admin/", admin.site.urls),
+    path("", include("store.urls")),
+    path(
+        "accounts/", include("allauth.urls")
+    ),  # Allauth URLs for login, logout, registration
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

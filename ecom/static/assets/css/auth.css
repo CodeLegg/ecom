@@ -87,166 +87,164 @@
 	--border-radius-md: 10px;
 	--border-radius-sm: 5px;
 }
-.auth-title{
-text-align: center;
+.auth-title {
+	text-align: center;
 }
 
 /* Form container styling */
 .login-form {
-    /* max-width: 400px; */
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fff;
-    /* border-radius: 8px; */
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+	/* max-width: 400px; */
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fff;
+	/* border-radius: 8px; */
+	/* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Form group styling */
 .form-group {
-    margin-bottom: 20px;
+	margin-bottom: 20px;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: var(--navbar);
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: var(--navbar);
 }
 
 .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid var(--lightgrey);
-    border-radius: 4px;
-    font-size: 14px;
-    transition: border-color 0.3s ease;
+	width: 100%;
+	padding: 10px;
+	border: 1px solid var(--lightgrey);
+	border-radius: 4px;
+	font-size: 14px;
+	transition: border-color 0.3s ease;
 }
 
 .form-group input:focus {
-    border: 2px solid var(--navbar);
-    outline: none;
+	border: 2px solid var(--navbar);
+	outline: none;
 }
 
 /* Submit button styling */
 .btn-submit {
-    width: 100%;
+	width: 100%;
 	padding: 12px 24px; /* Add padding to make buttons larger */
-    background-color: var(--navbar-sidekick2);
-    color: var(--white);
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+	background-color: var(--navbar-sidekick2);
+	color: var(--white);
+	border: none;
+	border-radius: 4px;
+	font-size: 16px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
 }
 
 .btn-submit:hover {
-    background-color: var(--navbar-sidekick-intermediate);
+	background-color: var(--navbar-sidekick-intermediate);
 }
 
 /* Separator */
 .separator {
-    text-align: center;
-    margin: 20px 0;
-    position: relative;
+	text-align: center;
+	margin: 20px 0;
+	position: relative;
 }
 
 .separator span {
-    background-color: #fff;
-    padding: 0 10px;
-    color: #666;
-    font-size: 14px;
+	background-color: #fff;
+	padding: 0 10px;
+	color: #666;
+	font-size: 14px;
 }
 
 .separator::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background-color: #ddd;
-    z-index: -1;
+	content: "";
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background-color: #ddd;
+	z-index: -1;
 }
 
 /* Social buttons */
 .social-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 .social-buttons button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 12px 24px; /* Add padding to make buttons larger */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #fff;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s ease;
 }
 .social-buttons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 12px 24px; /* Add padding to make buttons larger */
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	background-color: #fff;
+	cursor: pointer;
+	font-size: 14px;
+	transition: background-color 0.3s ease;
 }
 
 .social-buttons button img {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .btn-google:hover {
-    background-color: #f8f9fa;
+	background-color: #f8f9fa;
 }
 
 .btn-apple:hover {
-    background-color: #f8f9fa;
+	background-color: #f8f9fa;
 }
 
 .btn-facebook:hover {
-    background-color: #f8f9fa;
+	background-color: #f8f9fa;
 }
 
-.social-icon-spacer{
-    margin-right: 10px;
+.social-icon-spacer {
+	margin-right: 10px;
 }
 
 .signup-text {
-    text-align: center; /* Center the text and link */
-    display: block; /* Ensure the paragraph takes up full width */
-    margin-top: 20px; /* Optional: Add some spacing above if needed */
+	text-align: center; /* Center the text and link */
+	display: block; /* Ensure the paragraph takes up full width */
+	margin-top: 20px; /* Optional: Add some spacing above if needed */
 }
 
 .signup-text a {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--navbar-sidekick2);
-    font-weight: var(--weight-600);
-    margin-left: 5px;
+	display: inline-block;
+	text-decoration: none;
+	color: var(--navbar-sidekick2);
+	font-weight: var(--weight-600);
+	margin-left: 5px;
 }
 
 .signup-text a:hover {
-    color: var(--navbar-sidekick-intermediate);
+	color: var(--navbar-sidekick-intermediate);
 }
 
-
-
 .error-message {
-    display: none;
-    transition: opacity 0.3s ease;
+	display: none;
+	transition: opacity 0.3s ease;
 }
 
 .error-message.active {
-    display: block;
-    opacity: 1;
+	display: block;
+	opacity: 1;
 }

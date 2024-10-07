@@ -11,23 +11,22 @@
 		</div>
 
 		<div class="collection-grid">
-			{% for product in products %}					
-            <a href="{% url 'product' slug=product.slug %}" class="product-link">
-			<div class="collection-card">
+			{% for product in products %}
+			<a href="{% url 'product' slug=product.slug %}" class="product-link">
+				<div class="collection-card">
 					{% if product.image %}
 					<img
 						src="{{ product.image.url }}"
 						alt="{{ product.name }}"
 						class="collection-image"
 					/>
-					
+
 					{% endif %}
-				
+
 					<h2>{{ product.name }}</h2>
 					<p>{{ product.description }}</p>
-				
-
-			</div></a>
+				</div></a
+			>
 			{% empty %}
 			<p>No products available in this collection.</p>
 			{% endfor %}
@@ -39,10 +38,13 @@
 <script>
 	// Define URLs dynamically
 	const urls = {
-        customStickers: "{% url 'sticker_collections_product_list' slug='custom-stickers' %}",
-        stickerPacks: "{% url 'product' slug='custom-sticker-packs' %}",
-        PreMadeStickerShop: "{% url 'sticker_sub_collections_list' slug='themes' %}",
-        designServices: "{% url 'sticker_collections_product_list' slug='design-services' %}",
+		customStickers:
+			"{% url 'sticker_collections_product_list' slug='custom-stickers' %}",
+		stickerPacks: "{% url 'product' slug='custom-sticker-packs' %}",
+		PreMadeStickerShop:
+			"{% url 'sticker_sub_collections_list' slug='themes' %}",
+		designServices:
+			"{% url 'sticker_collections_product_list' slug='design-services' %}",
 		// Add other URLs similarly
 	};
 

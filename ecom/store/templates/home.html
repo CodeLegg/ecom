@@ -1,136 +1,136 @@
-{% extends "base.html" %}
-
-{% load static %}
-
-{% block content %}
-    <!--
+{% extends "base.html" %} {% load static %} {% block content %}
+<!--
     - BANNER
     -->
-    <div class="banner">
-        <div class="container">
-            <div class="slider-container has-scrollbar">
-                <div class="slider-item">
-                    <img src="{% static 'assets/images/stickerneeks-banner-halloween.png' %}" alt="women's latest fashion sale" class="banner-img">
-                    <div class="seasonal-content">
-                        <h2 class="">Pre-made Stickers</h2>
-                        <a href="#" class="seasonal-btn">Shop now</a>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="{% static 'assets/images/banner-2-neon.jpg' %}" alt="modern sunglasses" class="banner-img">
-                    <div class="banner-content">
-                        <p class="banner-subtitle">Trending accessories</p>
-                        <h2 class="banner-title">Modern sunglasses</h2>
-                        <p class="banner-text">
-                            starting at &dollar; <b>15</b>.00
-                        </p>
-                        <a href="#" class="banner-btn">Shop now</a>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="{% static 'assets/images/banner-2-neon.jpg' %}" alt="new fashion summer sale" class="banner-img">
-                    <div class="banner-content">
-                        <p class="banner-subtitle">Sale Offer</p>
-                        <h2 class="banner-title">New fashion summer sale</h2>
-                        <p class="banner-text">
-                            starting at &dollar; <b>29</b>.99
-                        </p>
-                        <a href="#" class="banner-btn">Shop now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="banner">
+	<div class="container">
+		<div class="slider-container has-scrollbar">
+			<div class="slider-item">
+				<img
+					src="{% static 'assets/images/stickerneeks-banner-halloween.png' %}"
+					alt="women's latest fashion sale"
+					class="banner-img"
+				/>
+				<div class="seasonal-content">
+					<h2 class="">Pre-made Stickers</h2>
+					<a href="#" class="seasonal-btn">Shop now</a>
+				</div>
+			</div>
+			<div class="slider-item">
+				<img
+					src="{% static 'assets/images/banner-2-neon.jpg' %}"
+					alt="modern sunglasses"
+					class="banner-img"
+				/>
+				<div class="banner-content">
+					<p class="banner-subtitle">Trending accessories</p>
+					<h2 class="banner-title">Modern sunglasses</h2>
+					<p class="banner-text">starting at &dollar; <b>15</b>.00</p>
+					<a href="#" class="banner-btn">Shop now</a>
+				</div>
+			</div>
+			<div class="slider-item">
+				<img
+					src="{% static 'assets/images/banner-2-neon.jpg' %}"
+					alt="new fashion summer sale"
+					class="banner-img"
+				/>
+				<div class="banner-content">
+					<p class="banner-subtitle">Sale Offer</p>
+					<h2 class="banner-title">New fashion summer sale</h2>
+					<p class="banner-text">starting at &dollar; <b>29</b>.99</p>
+					<a href="#" class="banner-btn">Shop now</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
-    <!--
+<!--
     - Featured Grid
     -->
 
-   <div class="five-boxes">
-    <div class="boxes-container">
-        <a href="{% url 'sticker_collections_product_list' slug='custom-stickers' %}">
-            <div class="box one">
-                <h2>
-                    <strong> Custom Stickers</strong>
-                </h2>
-            </div>
-        </a>
-        <a href="{% url 'sticker_collections_product_list' slug='custom-labels' %}">
-            <div class="box two">
-                <h2>
-                    <strong> Custom Labels</strong>
-                </h2>
-            </div>
-        </a>
-        <a href="{% url 'product' slug='all-custom-stickers' %}">
-            <div class="box three">
-                <h2>
-                    <strong> Design Your Own</strong>
-                </h2>
-            </div>
-        </a>
-        <a href="{% url 'sticker_sub_collections_list' slug='themes' %}">
-            <div class="box four">
-                <h2>
-                    <strong> Sticker Shop</strong>
-                </h2>
-            </div>
-        </a>
-        <a href="{% url 'cbd_section'%}">
-            <div class="box five">
-                <h2>
-                    <strong> CBD Section</strong>
-                </h2>
-            </div>
-        </a>
-        
-    </div>
-   </div>
-    
+<div class="five-boxes">
+	<div class="boxes-container">
+		<a
+			href="{% url 'sticker_collections_product_list' slug='custom-stickers' %}"
+		>
+			<div class="box one">
+				<h2>
+					<strong> Custom Stickers</strong>
+				</h2>
+			</div>
+		</a>
+		<a href="{% url 'sticker_collections_product_list' slug='custom-labels' %}">
+			<div class="box two">
+				<h2>
+					<strong> Custom Labels</strong>
+				</h2>
+			</div>
+		</a>
+		<a href="{% url 'product' slug='all-custom-stickers' %}">
+			<div class="box three">
+				<h2>
+					<strong> Design Your Own</strong>
+				</h2>
+			</div>
+		</a>
+		<a href="{% url 'sticker_sub_collections_list' slug='themes' %}">
+			<div class="box four">
+				<h2>
+					<strong> Sticker Shop</strong>
+				</h2>
+			</div>
+		</a>
+		<a href="{% url 'cbd_section'%}">
+			<div class="box five">
+				<h2>
+					<strong> CBD Section</strong>
+				</h2>
+			</div>
+		</a>
+	</div>
+</div>
 
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
-      
+<script>
+	// Get the showcase wrapper and arrows
+	const showcaseWrapper = document.querySelector(".showcase-wrapper");
+	const leftArrow = document.querySelector(".left-arrow");
+	const rightArrow = document.querySelector(".right-arrow");
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+	// Get the width of one card
+	const showcaseCard = document.querySelector(".showcase-card");
 
-    <script>
-      // Get the showcase wrapper and arrows
-      const showcaseWrapper = document.querySelector('.showcase-wrapper');
-      const leftArrow = document.querySelector('.left-arrow');
-      const rightArrow = document.querySelector('.right-arrow');
-      
-      // Get the width of one card
-      const showcaseCard = document.querySelector('.showcase-card');
-      
-      // If you're using gap in flexbox, get the gap dynamically from CSS
-      const showcaseContainer = document.querySelector('.showcase');
-      const gap = parseInt(getComputedStyle(showcaseContainer).gap);
-    
-      // Calculate card width (without adding gap twice)
-      const cardWidth = showcaseCard.offsetWidth + gap;
-    
-      // Scroll to the left when the left arrow is clicked
-      leftArrow.addEventListener('click', () => {
-        showcaseWrapper.scrollBy({
-          left: -cardWidth, // Scroll by the width of one card (including gap)
-          behavior: 'smooth'
-        });
-      });
-    
-      // Scroll to the right when the right arrow is clicked
-      rightArrow.addEventListener('click', () => {
-        showcaseWrapper.scrollBy({
-          left: cardWidth, // Scroll by the width of one card (including gap)
-          behavior: 'smooth'
-        });
-      });
-    </script>
-    
-    
+	// If you're using gap in flexbox, get the gap dynamically from CSS
+	const showcaseContainer = document.querySelector(".showcase");
+	const gap = parseInt(getComputedStyle(showcaseContainer).gap);
+
+	// Calculate card width (without adding gap twice)
+	const cardWidth = showcaseCard.offsetWidth + gap;
+
+	// Scroll to the left when the left arrow is clicked
+	leftArrow.addEventListener("click", () => {
+		showcaseWrapper.scrollBy({
+			left: -cardWidth, // Scroll by the width of one card (including gap)
+			behavior: "smooth",
+		});
+	});
+
+	// Scroll to the right when the right arrow is clicked
+	rightArrow.addEventListener("click", () => {
+		showcaseWrapper.scrollBy({
+			left: cardWidth, // Scroll by the width of one card (including gap)
+			behavior: "smooth",
+		});
+	});
+</script>
+
 {% endblock %}
