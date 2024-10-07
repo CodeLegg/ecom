@@ -7,7 +7,7 @@
 
 <main>
     <h2 class="auth-title">Create Your Account</h2>
-    <form method="POST" action="{% url 'register' %}" class="login-form"> <!-- Add class="login-form" to match the login form -->
+    <form method="POST" action="{% url 'register' %}" class="login-form hidden-form"> <!-- Add class="login-form" to match the login form -->
         {% csrf_token %}
     
     <!-- Social Sign-in Buttons -->
@@ -24,20 +24,20 @@
             <i class="fa-brands fa-facebook social-icon-spacer"></i>
             <p>Continue with Facebook</p>
         </button>    
-        <button type="button" class="btn-facebook">
+        <button type="button" class="btn-email" id="emailButton">
             <i class="fa-regular fa-envelope social-icon-spacer"></i>
             <p>Continue with Email</p>
         </button>    
-        
+    
         <!-- Separator for Social Sign-in Options -->
-    <div class="separator">
-        <span>or sign up with</span>
-    </div>
-
     </div>
         
-    <div class="">
-        <!-- Username Field -->
+    <div class="form-fields" id="formFields"> <!-- This is the div containing form fields -->
+         <div class="separator">
+        <hr>
+    </div> 
+    
+    <!-- Username Field -->
             <div class="form-group">
                 {{ form.username.label_tag }} <!-- Label for the username field -->
                 {{ form.username }} <!-- Input for the username field -->
@@ -113,6 +113,9 @@
             <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
         <!-- Link to login page -->
         <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
+            <br>
+            <br>
+            
     </div>
      </form>
 </main>
@@ -144,6 +147,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentHelpText.style.display = 'block';
             }
         });
+    });
+
+    // Get the "Continue with Email" button and the form fields container
+    const emailButton = document.getElementById('emailButton');
+    const formFields = document.getElementById('formFields');
+
+    // Hide the form inputs by default
+    formFields.style.display = 'none';
+
+    // Add event listener to the "Continue with Email" button
+    emailButton.addEventListener('click', function() {
+        formFields.style.display = 'block'; // Show the form inputs when clicked
+        emailButton.style.display = 'none'; // Hide the "Continue with Email" button when clicked
     });
 });
 
