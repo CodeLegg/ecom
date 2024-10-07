@@ -87,16 +87,18 @@
 	--border-radius-md: 10px;
 	--border-radius-sm: 5px;
 }
-
+.auth-title{
+text-align: center;
+}
 
 /* Form container styling */
 .login-form {
-    max-width: 400px;
+    /* max-width: 400px; */
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* border-radius: 8px; */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
 }
 
 /* Form group styling */
@@ -128,7 +130,7 @@
 /* Submit button styling */
 .btn-submit {
     width: 100%;
-    padding: 10px;
+	padding: 12px 24px; /* Add padding to make buttons larger */
     background-color: var(--navbar-sidekick2);
     color: var(--white);
     border: none;
@@ -178,7 +180,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+	padding: 12px 24px; /* Add padding to make buttons larger */
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fff;

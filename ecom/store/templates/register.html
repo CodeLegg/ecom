@@ -6,7 +6,7 @@
 <!-- content -->
 
 <main>
-
+<h2 class="auth-title">Create Your Account</h2>
     <form method="POST" action="{% url 'register' %}" class="login-form"> <!-- Add class="login-form" to match the login form -->
         {% csrf_token %}
     
@@ -83,7 +83,7 @@
         </div>
     
         <!-- Register Button -->
-        <button type="submit" class="btn-submit">Register</button> <!-- Apply the same class as login button -->
+        <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
     </form>
 
     <!-- Link to login page -->
