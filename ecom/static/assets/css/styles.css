@@ -451,7 +451,7 @@ ul.pushNav {
 	color: var(--navbar);
 	position: absolute;
 	top: 0;
-	right: 0;
+	right: 10%;
 	font-size: 12px;
 	font-weight: 700;
 	line-height: 1;
