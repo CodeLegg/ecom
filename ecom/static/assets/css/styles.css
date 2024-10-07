@@ -201,7 +201,6 @@ body {
 	font-size: 15px;
 }
 
-
 /*-----------------------------------*\
   #PUSH-NAV
 \*-----------------------------------*/
@@ -266,9 +265,6 @@ ul.pushNav {
 	padding-left: 1rem;
 }
 
-
-
-
 .backLevel,
 .openLevel {
 	cursor: pointer;
@@ -289,10 +285,9 @@ ul.pushNav {
 }
 
 /* mobile bottom header auth */
-.nav-auth-container {    
-	margin-block: 20px;                     
+.nav-auth-container {
+	margin-block: 20px;
 }
-
 
 .nav-auth-btn a {
 	border: none;
@@ -305,28 +300,33 @@ ul.pushNav {
 	box-sizing: border-box; /* Ensure padding and borders are included in width */
 	font-size: 16px;
 	text-decoration: none; /* Remove underline from links */
-  }
-  .signup{
+}
+/*----------------------*\
+	# NAVBAR BUTTONS  
+\*----------------------*/
+.signup {
 	margin-bottom: 10px;
-  }
-  /* Style for the Sign Up button (green background) */
-  .signup a {
+}
+/* Style for the Sign Up button (green background) */
+.signup a {
 	background-color: var(--navbar-sidekick2); /* Green background */
 	color: var(--navbar); /* White text */
-  }
-  
-  /* Style for the Sign In button (transparent with white border) */
-  .signin a {
+}
+
+/* Style for the Sign In button (transparent with white border) */
+.signin a {
 	background-color: transparent; /* Transparent background */
 	color: var(--white); /* White text */
 	border: 2px solid var(--white); /* White border */
-  }
-  
-  /* Adjustments for hover and focus states for both buttons */
-  .nav-auth-btn a:hover, .nav-auth-btn a:focus {
+}
+
+/* Adjustments for hover and focus states for both buttons */
+.nav-auth-btn a:hover,
+.nav-auth-btn a:focus {
 	opacity: 0.9; /* Slight transparency on hover */
-  }
-  
+}
+
+
 /* UNUSED BORDER */
 .home-border {
 	/* border-top: 1px solid rgba(255, 255, 255, 0.551); */
@@ -382,7 +382,6 @@ ul.pushNav {
 	opacity: 1;
 }
 
-
 /*-----------------------------------*\
   #MOBILE-BOTTOM-NAVIGATION
 \*-----------------------------------*/
@@ -422,7 +421,7 @@ ul.pushNav {
 	font-size: 26px;
 	color: var(--offwhite);
 	display: flex;
-	flex-direction: column; 
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	padding: 0.3078em;
@@ -487,8 +486,6 @@ ul.pushNav {
 	transition: 0.25s;
 }
 
-
-
 /*-----------------------------------*\
   #FOOTER
 \*-----------------------------------*/
@@ -517,7 +514,6 @@ footer {
 	height: auto; /* Keep image aspect ratio */
 	object-fit: cover; /* Ensures the image covers the container properly */
 }
-
 
 /*-----------------------------------*\
   #FOOTER NAV
@@ -625,8 +621,6 @@ footer {
 	color: inherit;
 }
 
-
-
 /*-----------------------------------*\
   #AGE-VERFICATION-MODAL
 \*-----------------------------------*/
@@ -669,7 +663,7 @@ footer {
 	color: #333; /* Text color */
 	font-size: 16px;
 }
-.button-wrappers{
+.button-wrappers {
 	display: flex;
 	justify-content: space-between;
 }
@@ -708,107 +702,109 @@ footer {
 	background-color: #45a049; /* Darker green */
 }
 
-/* 404 error page */
+/*----------------------*\
+	404 PAGE STYLES  
+\*----------------------*/
 
-.error-titles h2{
-font-size: 35px;
-text-align: center;
-padding: 20px 10px 0;
+.error-titles h2 {
+	font-size: 35px;
+	text-align: center;
+	padding: 20px 10px 0;
 }
 
-.error-content{text-align: center;
-font-size: 16px;
-max-width: 350px;
-margin: 0 auto;}
+.error-content {
+	text-align: center;
+	font-size: 16px;
+	max-width: 350px;
+	margin: 0 auto;
+}
 
-
-
-
-/* messages */
+/*----------------------*\
+	CUSTOM MESSAGES  
+\*----------------------*/
 
 /* General styling for the message container */
 #messages {
-    width: 100%;
-    padding: 10px 10px;
+	width: 100%;
+	padding: 10px 10px;
 }
 
 ul.messages {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 /* Styling for individual messages */
 li.message {
-    position: relative;
-    padding: 20px;
-    border-radius: var(--border-radius-md);
-    font-size: 16px;
-    line-height: 1.5;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds slight shadow for a modern look */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+	position: relative;
+	padding: 20px;
+	border-radius: var(--border-radius-md);
+	font-size: 16px;
+	line-height: 1.5;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds slight shadow for a modern look */
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 /* Styles for different message types */
 li.message.success {
-    background-color: #4CAF50; /* Green for success */
-    color: white;
+	background-color: #4caf50; /* Green for success */
+	color: white;
 }
 
 li.message.warning {
-    background-color: #ff9800; /* Orange for warning */
-    color: white;
+	background-color: #ff9800; /* Orange for warning */
+	color: white;
 }
 
 li.message.danger {
-    background-color: #f44336; /* Red for danger */
-    color: white;
+	background-color: #f44336; /* Red for danger */
+	color: white;
 }
 
 li.message.info {
-    background-color: #2196F3; /* Blue for info */
-    color: white;
+	background-color: #2196f3; /* Blue for info */
+	color: white;
 }
 
 /* Close button */
 .close-btn-messages {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%); /* Vertically center the close button */
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    line-height: 1;
-    font-weight: bold;
+	position: absolute;
+	top: 50%;
+	right: 15px;
+	transform: translateY(-50%); /* Vertically center the close button */
+	font-size: 20px;
+	color: white;
+	cursor: pointer;
+	border: none;
+	background: transparent;
+	line-height: 1;
+	font-weight: bold;
 }
 
 .close-btn-messages:hover {
-    color: #fff;
-    opacity: 0.8; /* Slight transparency on hover for a nice effect */
+	color: #fff;
+	opacity: 0.8; /* Slight transparency on hover for a nice effect */
 }
 
 /* Success, warning, danger, and info box specific hover effects */
 li.message.success:hover {
-    background-color: #45a049; /* Darker green on hover */
+	background-color: #45a049; /* Darker green on hover */
 }
 
 li.message.warning:hover {
-    background-color: #ff851b; /* Darker orange on hover */
+	background-color: #ff851b; /* Darker orange on hover */
 }
 
 li.message.danger:hover {
-    background-color: #e53935; /* Darker red on hover */
+	background-color: #e53935; /* Darker red on hover */
 }
 
 li.message.info:hover {
-    background-color: #1e88e5; /* Darker blue on hover */
+	background-color: #1e88e5; /* Darker blue on hover */
 }
-
 
 /* Style for mobile responsiveness */
 @media screen and (max-width: 768px) {

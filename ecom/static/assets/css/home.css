@@ -81,7 +81,6 @@
 	--shadow: 0 5px 20px 1px hsla(220, 63%, 33%, 0.1);
 	--shadow-light: 0px 2px 8px 0px rgba(99, 99, 99, 0.5);
 
-
 	/**
    * border-radius
    */
@@ -89,7 +88,6 @@
 	--border-radius-md: 10px;
 	--border-radius-sm: 5px;
 }
-
 
 /*-----------------------------------*\
   #BANNER
@@ -132,11 +130,11 @@
 
 .seasonal-content {
 	width: 100%;
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: var(--border-radius-md);
+	position: absolute;
+	top: 52%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: var(--border-radius-md);
 	text-align: center;
 	margin-block: 5px;
 }
@@ -173,7 +171,7 @@
 		background-color: violet; /* Violet */
 	}
 	70% {
-		background-color: #FF69B4; /* Pink */
+		background-color: #ff69b4; /* Pink */
 	}
 	80% {
 		background-color: orchid; /* Cyan */
@@ -187,7 +185,7 @@
 }
 
 .seasonal-btn {
-	background: red; 
+	background: red;
 	color: var(--white);
 	width: max-content;
 	font-size: 15px;
@@ -248,18 +246,18 @@
 .banner-btn:hover {
 	background: var(--eerie-black);
 }
-  
+
 /*-----------------------------------*\
   #HAS-SCROLLBAR
 \*-----------------------------------*/
 
-.has-scrollbar{
+.has-scrollbar {
 	padding-bottom: 5px;
 }
 
 .has-scrollbar::-webkit-scrollbar {
-	width: 4px; 
-	height: 4px; 
+	width: 4px;
+	height: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -271,20 +269,19 @@
 	background-color: var(--navbar-sidekick-intermediate);
 	border-radius: 10px;
 	width: 5px;
-	height: 5px; 
+	height: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
 	background-color: hsl(0, 0%, 70%);
 }
 
-
 /*-----------------------------------*\
   #BOXES
 \*-----------------------------------*/
 
-.boxes-container{
-padding:  0 10px;	
+.boxes-container {
+	padding: 0 10px;
 }
 
 .box {
@@ -292,159 +289,158 @@ padding:  0 10px;
 	padding: 20px;
 	margin-bottom: 20px;
 	border-radius: var(--border-radius-md);
-	box-shadow: var(--shadow-light)
+	box-shadow: var(--shadow-light);
 }
 
 /* Select the 2nd, 3rd, 4th, and 5th child and change their background */
-.one{
+.one {
 	background-image: url(../images/custom-stickers.webp); /* Replace with the desired background image */
 	background-position: center center; /* Adjust as needed */
 	background-size: 80%;
 	position: relative; /* Required to position the overlay */
-    overflow: hidden; /* Ensures the overlay stays inside the box */
+	overflow: hidden; /* Ensures the overlay stays inside the box */
 }
 
 /* Green overlay */
 .one::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(163, 0, 133, 0.5); /* Green overlay with 50% opacity */
-    z-index: 1; /* Ensures the overlay is above the background but below any text */
-    border-radius: inherit; /* Inherit the border radius from the parent box */
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(163, 0, 133, 0.5); /* Green overlay with 50% opacity */
+	z-index: 1; /* Ensures the overlay is above the background but below any text */
+	border-radius: inherit; /* Inherit the border radius from the parent box */
 }
 
 /* To ensure any text or content appears above the overlay */
 .one > * {
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 /* box 2 */
-.two{
-	background-image: url(../images/custom-labels.webp); 
-	background-position: center center; 
+.two {
+	background-image: url(../images/custom-labels.webp);
+	background-position: center center;
 	background-size: 80%;
-	position: relative; 
-    overflow: hidden; 
+	position: relative;
+	overflow: hidden;
 }
 
 /* overlay */
 .two::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 125, 125, 0.5); 
-    z-index: 1;
-    border-radius: inherit; 
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 125, 125, 0.5);
+	z-index: 1;
+	border-radius: inherit;
 }
 
 /* To ensure any text or content appears above the overlay */
 .two > * {
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 /* box 3 */
-.three{
-	background-image: url(../images/banner-1-neon.jpg); 
-	background-position: center center; 
+.three {
+	background-image: url(../images/banner-1-neon.jpg);
+	background-position: center center;
 	background-size: 100%;
 	background-repeat: no-repeat;
-	position: relative; 
-    overflow: hidden; 
+	position: relative;
+	overflow: hidden;
 }
 
 /* overlay */
 .three::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 62, 128, 0.5); 
-    z-index: 1; 
-    border-radius: inherit; 
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 62, 128, 0.5);
+	z-index: 1;
+	border-radius: inherit;
 }
 
 /* To ensure any text or content appears above the overlay */
 .three > * {
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 /* box 4 */
-.four{
-	background-image: url(../images/stickershop.webp); 
-	background-position: center; 
+.four {
+	background-image: url(../images/stickershop.webp);
+	background-position: center;
 	background-size: 100%;
 	background-repeat: no-repeat;
-	position: relative; 
-    overflow: hidden; 
+	position: relative;
+	overflow: hidden;
 }
 
 /* overlay */
 .four::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(196, 117, 0, 0.5); 
-    z-index: 1; 
-    border-radius: inherit;
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(196, 117, 0, 0.5);
+	z-index: 1;
+	border-radius: inherit;
 }
 
 /* To ensure any text or content appears above the overlay */
 .four > * {
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 }
-
 
 /* BOX CBD PACKAGING TILE*/
 
 .five {
-    background-image: url(../images/cbd-packaging.png); 
-    background-position: center center; 
-    background-size: 65%;
-    position: relative; 
-    overflow: hidden;
+	background-image: url(../images/cbd-packaging.png);
+	background-position: center center;
+	background-size: 65%;
+	position: relative;
+	overflow: hidden;
 }
 /* overlay */
 .five::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 128, 0, 0.5); 
-    z-index: 1; 
-    border-radius: inherit; 
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 128, 0, 0.5);
+	z-index: 1;
+	border-radius: inherit;
 }
 
 /* To ensure any text or content appears above the overlay */
 .five > * {
-    position: relative;
-    z-index: 2;
+	position: relative;
+	z-index: 2;
 }
 
 /* BOX TEXT */
-.box h2{
-	color : var(--white);
+.box h2 {
+	color: var(--white);
 }
 
 /* TEMPARY SEARCH */
-.temp-search{
+.temp-search {
 	color: var(--white);
 	font-size: 18px;
 }
