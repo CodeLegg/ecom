@@ -206,3 +206,33 @@
 .social-icon-spacer{
     margin-right: 10px;
 }
+
+.signup-text {
+    text-align: center; /* Center the text and link */
+    display: block; /* Ensure the paragraph takes up full width */
+    margin-top: 20px; /* Optional: Add some spacing above if needed */
+}
+
+.signup-text a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--navbar-sidekick2);
+    font-weight: var(--weight-600);
+    margin-left: 5px;
+}
+
+.signup-text a:hover {
+    color: var(--navbar-sidekick-intermediate);
+}
+
+
+
+.error-message {
+    display: none;
+    transition: opacity 0.3s ease;
+}
+
+.error-message.active {
+    display: block;
+    opacity: 1;
+}

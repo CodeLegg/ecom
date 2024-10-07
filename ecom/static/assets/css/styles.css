@@ -759,7 +759,7 @@ li.message.warning {
 	color: white;
 }
 
-li.message.danger {
+li.message.error {
 	background-color: #f44336; /* Red for danger */
 	color: white;
 }

@@ -7,8 +7,7 @@
 
 <main>
 
-    <form method="POST" action="{% url 'register' %}">
-        {% csrf_token %}
+    <form method="POST" action="{% url 'register' %}" class="login-form"> <!-- Add class="login-form" to match the login form -->
         {% csrf_token %}
     
         <!-- Username Field -->
@@ -18,7 +17,9 @@
             <div class="text-danger">
                 {{ form.username.errors }} <!-- Show errors for username -->
             </div>
-            <small class="form-text text-muted">{{ form.username.help_text }}</small> <!-- Help text for username -->
+            <small id="id_usernameHelp" class="form-text text-muted" style="display:none;">
+                {{ form.username.help_text }}
+            </small> <!-- Help text for username -->
         </div>
     
         <!-- First Name Field -->
@@ -28,7 +29,9 @@
             <div class="text-danger">
                 {{ form.first_name.errors }} <!-- Show errors for first name -->
             </div>
-            <small class="form-text text-muted">{{ form.first_name.help_text }}</small> <!-- Help text for first name -->
+            <small id="id_first_nameHelp" class="form-text text-muted" style="display:none;">
+                {{ form.first_name.help_text }}
+            </small> <!-- Help text for first name -->
         </div>
     
         <!-- Last Name Field -->
@@ -38,7 +41,9 @@
             <div class="text-danger">
                 {{ form.last_name.errors }} <!-- Show errors for last name -->
             </div>
-            <small class="form-text text-muted">{{ form.last_name.help_text }}</small> <!-- Help text for last name -->
+            <small id="id_last_nameHelp" class="form-text text-muted" style="display:none;">
+                {{ form.last_name.help_text }}
+            </small> <!-- Help text for last name -->
         </div>
     
         <!-- Email Field -->
@@ -48,7 +53,9 @@
             <div class="text-danger">
                 {{ form.email.errors }} <!-- Show errors for email -->
             </div>
-            <small class="form-text text-muted">{{ form.email.help_text }}</small> <!-- Help text for email -->
+            <small id="id_emailHelp" class="form-text text-muted" style="display:none;">
+                {{ form.email.help_text }}
+            </small> <!-- Help text for email -->
         </div>
     
         <!-- Password1 Field -->
@@ -58,7 +65,9 @@
             <div class="text-danger">
                 {{ form.password1.errors }} <!-- Show errors for password1 -->
             </div>
-            <small class="form-text text-muted">{{ form.password1.help_text }}</small> <!-- Help text for password1 -->
+            <small id="id_password1Help" class="form-text text-muted" style="display:none;">
+                {{ form.password1.help_text }}
+            </small> <!-- Help text for password1 -->
         </div>
     
         <!-- Password2 Field -->
@@ -68,20 +77,40 @@
             <div class="text-danger">
                 {{ form.password2.errors }} <!-- Show errors for password2 -->
             </div>
-            <small class="form-text text-muted">{{ form.password2.help_text }}</small> <!-- Help text for password2 -->
+            <small id="id_password2Help" class="form-text text-muted" style="display:none;">
+                {{ form.password2.help_text }}
+            </small> <!-- Help text for password2 -->
         </div>
-   <button type="submit">Register</button>
+    
+        <!-- Register Button -->
+        <button type="submit" class="btn-submit">Register</button> <!-- Apply the same class as login button -->
     </form>
 
-    <p>Don't have an account? <a href="#">Sign up here</a></p>
-
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+    <!-- Link to login page -->
+    <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
     
 </main>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const inputs = document.querySelectorAll('input'); // Select all inputs
+    
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            const helpText = document.getElementById(this.id + 'Help'); // Match input ID with corresponding Help text ID
+            if (helpText) {
+                helpText.style.display = 'block'; // Show help text on focus
+            }
+        });
+        
+        input.addEventListener('blur', function() {
+            const helpText = document.getElementById(this.id + 'Help'); // Match input ID with corresponding Help text ID
+            if (helpText) {
+                helpText.style.display = 'none'; // Hide help text on blur
+            }
+        });
+    });
+});
+
+</script>
 {% endblock %}
