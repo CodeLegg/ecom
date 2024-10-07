@@ -141,7 +141,7 @@ text-align: center;
 }
 
 .btn-submit:hover {
-    background-color: #0056b3;
+    background-color: var(--navbar-sidekick-intermediate);
 }
 
 /* Separator */
