@@ -90,6 +90,12 @@
 .auth-title {
 	text-align: center;
 }
+.auth-sub-title {
+	text-align: center;
+	font-size: var(--fs-3);
+}
+
+
 
 /* Form container styling */
 .login-form {

@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     "allauth.socialaccount",  # For social authentication (Google, Facebook, etc.)
     # Add providers you need (e.g., Google, Facebook)
     "allauth.socialaccount.providers.google",
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.instagram',
 ]
 SITE_ID = 2
 

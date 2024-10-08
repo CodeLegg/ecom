@@ -4,6 +4,9 @@
 
 <main>
 	<h2 class="auth-title">Welcome Back!</h2>
+	<p class="auth-sub-title">
+		The UK's Number One Choice For Anything Sticker Related!
+	</p>
 	<form method="POST" action="{% url 'login' %}" class="login-form">
 		{% csrf_token %}
 		<div class="form-group">
@@ -26,10 +29,15 @@
 				<i class="fa-brands fa-google social-icon-spacer"></i> Continue with
 				Google
 			</a>
-			<button type="button" class="btn-facebook">
-				<i class="fa-brands fa-facebook social-icon-spacer"></i>
-				<p>Continue with Facebook</p>
-			</button>
+			<a href="{% provider_login_url 'facebook' %}" class="btn-facebook">
+				<i class="fa-brands fa-facebook social-icon-spacer"></i> Continue with
+				Facebook
+			</a>
+			<a href="{% provider_login_url 'instagram' %}" class="btn-facebook">
+				<i class="fa-brands fa-instagram social-icon-spacer"></i> Continue with
+				Instagram
+			</a>
+			
 		</div>
 
 		<br />
