@@ -90,11 +90,25 @@
 .auth-title {
 	text-align: center;
 }
+.auth-title p:first-child {
+margin-block: 8px;}
+
 .auth-sub-title {
 	text-align: center;
 	font-size: var(--fs-3);
 }
 
+.auth-small-print-wrapper{
+text-align: center;
+}
+.auth-small-print{
+	font-size: var(--fs-3);
+	color: var(--black_70);
+
+}
+.auth-small-print a{
+	display: inline-block;
+}
 
 
 /* Form container styling */

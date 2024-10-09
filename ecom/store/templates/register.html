@@ -4,6 +4,16 @@
 
 <main>
 	<h2 class="auth-title">Create Your Account</h2>
+	<div class="auth-title">
+		<p>
+			<i class="fa-regular fa-circle-check social-icon-spacer"></i>Unlock
+			exclusive deals and early access
+		</p>
+		<p>
+			<i class="fa-regular fa-circle-check social-icon-spacer"></i>Check out
+			faster with saved details.
+		</p>
+	</div>
 	<form
 		method="POST"
 		action="{% url 'register' %}"
@@ -23,6 +33,7 @@
 				<i class="fa-brands fa-facebook social-icon-spacer"></i> Continue with
 				Facebook
 			</a>
+			<!-- come back and check this -->
 			<a href="{% provider_login_url 'instagram' %}" class="btn-facebook">
 				<i class="fa-brands fa-instagram social-icon-spacer"></i> Continue with
 				Instagram
@@ -169,6 +180,14 @@
 			<br />
 		</div>
 	</form>
+
+	<div class="auth-small-print-wrapper">
+		<small class="auth-small-print"
+			>By continuing, you confirm you are 18 or over when using the CBD section
+			and agree to our <a href="">Privacy Policy</a> and
+			<a href="">Terms of Use</a>
+		</small>
+	</div>
 </main>
 
 <script>
