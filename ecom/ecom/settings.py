@@ -2,51 +2,59 @@ from pathlib import Path
 import os
 import dj_database_url
 
+# Paths
+# ------------------------------------------------------------------------------
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
+# Security Settings
+# ------------------------------------------------------------------------------
+# Keep the secret key used in production secret!
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
-    "django-insecure-4ej6jn@x=^d#g8c8y+$+32$l)yi393-(36&+@@t0ue6j6t6^bh",
+    "django-insecure-4ej6jn@x=^d#g8c8y+$+32$l)yi393-(36&+@@t0ue6j6t6^bh",  # Default for development
 )
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Don't run with debug turned on in production!
 DEBUG = os.environ.get("DJANGO_DEBUG", "") != "False"
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-SOCIALACCOUNT_LOGIN_ON_GET = True
 
-
-# Application definition
-
+# Applications Installed
+# ------------------------------------------------------------------------------
 INSTALLED_APPS = [
+    # Default Django apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    # Custom apps
     "store",  # Your custom app
+
+    # Third-party apps
     "mptt",  # For hierarchical category management
     "django_mptt_admin",  # Admin integration for MPTT
-    # Required for django-allauth
-    "django.contrib.sites",  # Needed by django-allauth
-    # django-allauth apps
+
+    # Allauth (for authentication)
+    "django.contrib.sites",  # Required by django-allauth
     "allauth",
-    "allauth.account",  # For regular auth (sign up, login)
+    "allauth.account",  # For email/password authentication
     "allauth.socialaccount",  # For social authentication (Google, Facebook, etc.)
-    # Add providers you need (e.g., Google, Facebook)
-    "allauth.socialaccount.providers.google",
-    'allauth.socialaccount.providers.facebook',
+    "allauth.socialaccount.providers.google",  # Google OAuth
+    "allauth.socialaccount.providers.facebook",  # Facebook OAuth
 ]
+
+# Set the current site ID (required by allauth)
 SITE_ID = 2
 
+
+# Middleware
+# ------------------------------------------------------------------------------
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -55,30 +63,33 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # For serving static files in production
-    "allauth.account.middleware.AccountMiddleware",  # This is needed for allauth
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Static file handling for production
+    "allauth.account.middleware.AccountMiddleware",  # Required by allauth
 ]
 
 
+# Authentication
+# ------------------------------------------------------------------------------
 AUTHENTICATION_BACKENDS = [
-    "store.authentication_backends.EmailBackend",  # Your custom email backend
-    "django.contrib.auth.backends.ModelBackend",  # Default backend (for username login)
+    "store.authentication_backends.EmailBackend",  # Custom email backend
+    "django.contrib.auth.backends.ModelBackend",  # Default backend
     "allauth.account.auth_backends.AuthenticationBackend",  # Allauth backend
 ]
 
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "/"  # Where to redirect users after login
+LOGOUT_REDIRECT_URL = "/"  # Where to redirect users after logout
 
-
+# Email backend for development (prints emails to the console)
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-ROOT_URLCONF = "ecom.urls"
 
+# Templates
+# ------------------------------------------------------------------------------
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
-        "APP_DIRS": True,
+        "DIRS": [],  # Directories to search for templates
+        "APP_DIRS": True,  # Allow automatic template discovery in app directories
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -90,72 +101,66 @@ TEMPLATES = [
     },
 ]
 
+# URL configuration
+ROOT_URLCONF = "ecom.urls"
+
+# WSGI Application
 WSGI_APPLICATION = "ecom.wsgi.application"
 
 
-# Database
-# https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+# Database Configuration
+# ------------------------------------------------------------------------------
+# Use PostgreSQL in production or default to SQLite for development
 DATABASES = {
     "default": dj_database_url.config(
-        default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),
-        conn_max_age=600,  # Optimize database connections
+        default=os.environ.get("DATABASE_URL", "sqlite:///db.sqlite3"),  # Use environment variable or fallback to SQLite
+        conn_max_age=600,  # Optimize database connections for performance
     )
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
-
+# Password Validation
+# ------------------------------------------------------------------------------
+# Validate the strength of user passwords
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.1/topics/i18n/
-
+# ------------------------------------------------------------------------------
+# Language and timezone settings
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
-USE_I18N = True
-
-USE_TZ = True
+USE_I18N = True  # Enable translation system
+USE_TZ = True  # Enable timezone support
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.1/howto/static-files/
-
+# Static Files
+# ------------------------------------------------------------------------------
+# URL to use when referring to static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
 
-# Directory where static files are stored during development
-STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Make sure this directory exists and contains static files
-]
+# Directories where Django will look for static files
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Development
 
-# Directory where static files are collected for production
+# The directory where static files will be collected for production
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# WhiteNoise settings (to serve static files in production)
+# WhiteNoise settings (for serving static files in production)
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-# Media files (for user uploads)
+
+# Media Files
+# ------------------------------------------------------------------------------
+# Media files (uploaded by users)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media/"
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
+# Default primary key field type
+# ------------------------------------------------------------------------------
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
