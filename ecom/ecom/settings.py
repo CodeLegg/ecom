@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     # Add providers you need (e.g., Google, Facebook)
     "allauth.socialaccount.providers.google",
     'allauth.socialaccount.providers.facebook',
-    'allauth.socialaccount.providers.instagram',
 ]
 SITE_ID = 2
 
