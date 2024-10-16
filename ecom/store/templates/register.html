@@ -1,149 +1,237 @@
-{% extends 'base.html' %}
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
 <!-- content -->
 
 <main>
-    <h2 class="auth-title">Create Your Account</h2>
-    <form method="POST" action="{% url 'register' %}" class="login-form"> <!-- Add class="login-form" to match the login form -->
-        {% csrf_token %}
-    
-    <!-- Social Sign-in Buttons -->
-    <div class="social-buttons">
-        <button type="button" class="btn-google">
-            <i class="fa-brands fa-google social-icon-spacer"></i>
-            <p>Continue with Google</p>
-        </button>
-        <button type="button" class="btn-apple">
-            <i class="fa-brands fa-apple social-icon-spacer"></i>
-            <p>Continue with Apple</p>
-        </button>
-        <button type="button" class="btn-facebook">
-            <i class="fa-brands fa-facebook social-icon-spacer"></i>
-            <p>Continue with Facebook</p>
-        </button>    
-        
-        <!-- Separator for Social Sign-in Options -->
-    <div class="separator">
-        <span>or sign up with</span>
-    </div>
+	<h2 class="auth-title">Create Your Account</h2>
+	<div class="auth-title">
+		<p>
+			<i class="fa-regular fa-circle-check social-icon-spacer"></i>Unlock
+			exclusive deals and early access
+		</p>
+		<p>
+			<i class="fa-regular fa-circle-check social-icon-spacer"></i>Check out
+			faster with saved details.
+		</p>
+	</div>
+	<form
+		method="POST"
+		action="{% url 'register' %}"
+		class="login-form hidden-form"
+	>
+		<!-- Add class="login-form" to match the login form -->
+		{% csrf_token %}
 
-    </div>
-        <!-- Username Field -->
-        <div class="form-group">
-            {{ form.username.label_tag }} <!-- Label for the username field -->
-            {{ form.username }} <!-- Input for the username field -->
-            <div class="text-danger">
-                {{ form.username.errors }} <!-- Show errors for username -->
-            </div>
-            <small id="id_usernameHelp" class="form-text text-muted">
-                {{ form.username.help_text }}
-            </small> <!-- Help text for username -->
-        </div>
-    
-        <!-- First Name Field -->
-        <div class="form-group">
-            {{ form.first_name.label_tag }} <!-- Label for the first name field -->
-            {{ form.first_name }} <!-- Input for the first name field -->
-            <div class="text-danger">
-                {{ form.first_name.errors }} <!-- Show errors for first name -->
-            </div>
-            <small id="id_first_nameHelp" class="form-text text-muted" style="display:none;">
-                {{ form.first_name.help_text }}
-            </small> <!-- Help text for first name -->
-        </div>
-    
-        <!-- Last Name Field -->
-        <div class="form-group">
-            {{ form.last_name.label_tag }} <!-- Label for the last name field -->
-            {{ form.last_name }} <!-- Input for the last name field -->
-            <div class="text-danger">
-                {{ form.last_name.errors }} <!-- Show errors for last name -->
-            </div>
-            <small id="id_last_nameHelp" class="form-text text-muted" style="display:none;">
-                {{ form.last_name.help_text }}
-            </small> <!-- Help text for last name -->
-        </div>
-    
-        <!-- Email Field -->
-        <div class="form-group">
-            {{ form.email.label_tag }} <!-- Label for the email field -->
-            {{ form.email }} <!-- Input for the email field -->
-            <div class="text-danger">
-                {{ form.email.errors }} <!-- Show errors for email -->
-            </div>
-            <small id="id_emailHelp" class="form-text text-muted" style="display:none;">
-                {{ form.email.help_text }}
-            </small> <!-- Help text for email -->
-        </div>
-    
-        <!-- Password1 Field -->
-        <div class="form-group">
-            {{ form.password1.label_tag }} <!-- Label for the password field -->
-            {{ form.password1 }} <!-- Input for the password field -->
-            <div class="text-danger">
-                {{ form.password1.errors }} <!-- Show errors for password1 -->
-            </div>
-            <small id="id_password1Help" class="form-text text-muted" style="display:none;">
-                {{ form.password1.help_text }}
-            </small> <!-- Help text for password1 -->
-        </div>
-    
-        <!-- Password2 Field -->
-        <div class="form-group">
-            {{ form.password2.label_tag }} <!-- Label for the password confirmation field -->
-            {{ form.password2 }} <!-- Input for the password confirmation field -->
-            <div class="text-danger">
-                {{ form.password2.errors }} <!-- Show errors for password2 -->
-            </div>
-            <small id="id_password2Help" class="form-text text-muted" style="display:none;">
-                {{ form.password2.help_text }}
-            </small> <!-- Help text for password2 -->
-        </div>
-    
-        <!-- Register Button -->
-        <button type="submit" class="btn-submit">Sign Up</button> <!-- Apply the same class as login button -->
-    </form>
+		<!-- Social Sign-in Buttons -->
+		<div class="social-buttons">
+			{% load socialaccount %}
+			<a href="{% provider_login_url 'google' %}" class="btn-google">
+				<i class="fa-brands fa-google social-icon-spacer"></i> Continue with
+				Google
+			</a>
+			<a href="{% provider_login_url 'facebook' %}" class="btn-facebook">
+				<i class="fa-brands fa-facebook social-icon-spacer"></i> Continue with
+				Facebook
+			</a>
+			<!-- come back and check this -->
+			<a href="{% provider_login_url 'instagram' %}" class="btn-facebook">
+				<i class="fa-brands fa-instagram social-icon-spacer"></i> Continue with
+				Instagram
+			</a>
+			<button type="button" class="btn-email" id="emailButton">
+				<i class="fa-regular fa-envelope social-icon-spacer"></i>
+				<p>Continue with Email</p>
+			</button>
 
+			<!-- Separator for Social Sign-in Options -->
+		</div>
 
+		<div class="form-fields" id="formFields">
+			<!-- This is the div containing form fields -->
+			<div class="separator">
+				<hr />
+			</div>
 
-    <!-- Link to login page -->
-    <p class="signup-text">Already have an account? <a href="{% url 'login' %}">Login here</a></p> <!-- Use same class for text alignment -->
-    
+			<!-- Username Field -->
+			<div class="form-group">
+				{{ form.username.label_tag }}
+				<!-- Label for the username field -->
+				{{ form.username }}
+				<!-- Input for the username field -->
+				<div class="text-danger">
+					{{ form.username.errors }}
+					<!-- Show errors for username -->
+				</div>
+				<small id="id_usernameHelp" class="form-text text-muted">
+					{{ form.username.help_text }}
+				</small>
+				<!-- Help text for username -->
+			</div>
+
+			<!-- First Name Field -->
+			<div class="form-group">
+				{{ form.first_name.label_tag }}
+				<!-- Label for the first name field -->
+				{{ form.first_name }}
+				<!-- Input for the first name field -->
+				<div class="text-danger">
+					{{ form.first_name.errors }}
+					<!-- Show errors for first name -->
+				</div>
+				<small
+					id="id_first_nameHelp"
+					class="form-text text-muted"
+					style="display: none"
+				>
+					{{ form.first_name.help_text }}
+				</small>
+				<!-- Help text for first name -->
+			</div>
+
+			<!-- Last Name Field -->
+			<div class="form-group">
+				{{ form.last_name.label_tag }}
+				<!-- Label for the last name field -->
+				{{ form.last_name }}
+				<!-- Input for the last name field -->
+				<div class="text-danger">
+					{{ form.last_name.errors }}
+					<!-- Show errors for last name -->
+				</div>
+				<small
+					id="id_last_nameHelp"
+					class="form-text text-muted"
+					style="display: none"
+				>
+					{{ form.last_name.help_text }}
+				</small>
+				<!-- Help text for last name -->
+			</div>
+
+			<!-- Email Field -->
+			<div class="form-group">
+				{{ form.email.label_tag }}
+				<!-- Label for the email field -->
+				{{ form.email }}
+				<!-- Input for the email field -->
+				<div class="text-danger">
+					{{ form.email.errors }}
+					<!-- Show errors for email -->
+				</div>
+				<small
+					id="id_emailHelp"
+					class="form-text text-muted"
+					style="display: none"
+				>
+					{{ form.email.help_text }}
+				</small>
+				<!-- Help text for email -->
+			</div>
+
+			<!-- Password1 Field -->
+			<div class="form-group">
+				{{ form.password1.label_tag }}
+				<!-- Label for the password field -->
+				{{ form.password1 }}
+				<!-- Input for the password field -->
+				<div class="text-danger">
+					{{ form.password1.errors }}
+					<!-- Show errors for password1 -->
+				</div>
+				<small
+					id="id_password1Help"
+					class="form-text text-muted"
+					style="display: none"
+				>
+					{{ form.password1.help_text }}
+				</small>
+				<!-- Help text for password1 -->
+			</div>
+
+			<!-- Password2 Field -->
+			<div class="form-group">
+				{{ form.password2.label_tag }}
+				<!-- Label for the password confirmation field -->
+				{{ form.password2 }}
+				<!-- Input for the password confirmation field -->
+				<div class="text-danger">
+					{{ form.password2.errors }}
+					<!-- Show errors for password2 -->
+				</div>
+				<small
+					id="id_password2Help"
+					class="form-text text-muted"
+					style="display: none"
+				>
+					{{ form.password2.help_text }}
+				</small>
+				<!-- Help text for password2 -->
+			</div>
+
+			<!-- Register Button -->
+			<button type="submit" class="btn-submit">Sign Up</button>
+			<!-- Apply the same class as login button -->
+			<!-- Link to login page -->
+			<p class="signup-text">
+				Already have an account? <a href="{% url 'login' %}">Login here</a>
+			</p>
+			<!-- Use same class for text alignment -->
+			<br />
+			<br />
+		</div>
+	</form>
+
+	<div class="auth-small-print-wrapper">
+		<small class="auth-small-print"
+			>By continuing, you confirm you are 18 or over when using the CBD section
+			and agree to our <a href="">Privacy Policy</a> and
+			<a href="">Terms of Use</a>
+		</small>
+	</div>
 </main>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    const inputs = document.querySelectorAll('input'); // Select all inputs
-    const firstInput = inputs[0]; // Select the first input
-    const firstInputHelp = document.getElementById(firstInput.id + 'Help'); // Get the first input's help text
+	document.addEventListener("DOMContentLoaded", function () {
+		const inputs = document.querySelectorAll("input"); // Select all inputs
+		const firstInput = inputs[0]; // Select the first input
+		const firstInputHelp = document.getElementById(firstInput.id + "Help"); // Get the first input's help text
 
-    // Show the first input's help text when the page loads
-    if (firstInputHelp) {
-        firstInputHelp.style.display = 'block';
-    }
+		// Show the first input's help text when the page loads
+		if (firstInputHelp) {
+			firstInputHelp.style.display = "block";
+		}
 
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            // Hide all help texts
-            inputs.forEach(inputField => {
-                const helpText = document.getElementById(inputField.id + 'Help');
-                if (helpText) {
-                    helpText.style.display = 'none'; // Hide all help texts
-                }
-            });
+		inputs.forEach((input) => {
+			input.addEventListener("focus", function () {
+				// Hide all help texts
+				inputs.forEach((inputField) => {
+					const helpText = document.getElementById(inputField.id + "Help");
+					if (helpText) {
+						helpText.style.display = "none"; // Hide all help texts
+					}
+				});
 
-            // Show the help text for the currently focused input
-            const currentHelpText = document.getElementById(this.id + 'Help');
-            if (currentHelpText) {
-                currentHelpText.style.display = 'block';
-            }
-        });
-    });
-});
+				// Show the help text for the currently focused input
+				const currentHelpText = document.getElementById(this.id + "Help");
+				if (currentHelpText) {
+					currentHelpText.style.display = "block";
+				}
+			});
+		});
 
+		// Get the "Continue with Email" button and the form fields container
+		const emailButton = document.getElementById("emailButton");
+		const formFields = document.getElementById("formFields");
+
+		// Hide the form inputs by default
+		formFields.style.display = "none";
+
+		// Add event listener to the "Continue with Email" button
+		emailButton.addEventListener("click", function () {
+			formFields.style.display = "block"; // Show the form inputs when clicked
+			emailButton.style.display = "none"; // Hide the "Continue with Email" button when clicked
+		});
+	});
 </script>
 
 {% endblock %}

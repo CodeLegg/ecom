@@ -1,37 +1,39 @@
-{% extends 'base.html' %} 
-{% load static %}
-
-{% block content %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 <main>
-    <!-- Title section -->
-    <div class="collection-title">
-        <h2>Browse By Themes</h2>
-    </div>
+	<!-- Title section -->
+	<div class="collection-title">
+		<h2>Browse By Themes</h2>
+	</div>
 
-    <section class="collection-detail">
-        <!-- Message section for dynamic content (if needed) -->
-        <div class="collection-message" id="collection-message">
-            <!-- The message will be dynamically inserted here -->
-        </div>
+	<section class="collection-detail">
+		<!-- Message section for dynamic content (if needed) -->
+		<div class="collection-message" id="collection-message">
+			<!-- The message will be dynamically inserted here -->
+		</div>
 
-        <!-- Sub-collections grid -->
-        <div class="collection-grid">
-            {% if sub_collections %}
-                {% for sub in sub_collections %}
-                    <a href="{% url 'sticker_sub_collections_product_list' sub.slug %}" class="product-link">
-                        <div class="collection-card">
-                            {% if sub.image %}
-                                <img src="{{ sub.image.url }}" alt="{{ sub.name }}" class="collection-image" />
-                            {% endif %}
-                            <h2>{{ sub.name }}</h2>
-                            <p>{{ sub.description }}</p>
-                        </div>
-                    </a>
-                {% endfor %}
-            {% else %}
-                <p>No sub-collections found.</p>
-            {% endif %}
-        </div>
-    </section>
+		<!-- Sub-collections grid -->
+		<div class="collection-grid">
+			{% if sub_collections %} {% for sub in sub_collections %}
+			<a
+				href="{% url 'sticker_sub_collections_product_list' sub.slug %}"
+				class="product-link"
+			>
+				<div class="collection-card">
+					{% if sub.image %}
+					<img
+						src="{{ sub.image.url }}"
+						alt="{{ sub.name }}"
+						class="collection-image"
+					/>
+					{% endif %}
+					<h2>{{ sub.name }}</h2>
+					<p>{{ sub.description }}</p>
+				</div>
+			</a>
+			{% endfor %} {% else %}
+			<p>No sub-collections found.</p>
+			{% endif %}
+		</div>
+	</section>
 </main>
 {% endblock %}
