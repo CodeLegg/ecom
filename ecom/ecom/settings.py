@@ -3,6 +3,8 @@ import dj_database_url
 from dotenv import load_dotenv
 import os
 
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
 # Load environment variables from the .env file
 load_dotenv()
 # Paths
